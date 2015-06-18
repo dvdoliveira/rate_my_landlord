@@ -1,9 +1,12 @@
 require 'rake'
 require "sinatra/activerecord/rake"
+require 'active_record/schema_dumper'
 require ::File.expand_path('../config/environment', __FILE__)
 
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
+
+DATABASE_PATH = File.absolute_path("db/db.sqlite3", File.dirname(__FILE__))
 
 # NOTE: Assumes SQLite3 DB
 desc "create the database"
@@ -47,6 +50,42 @@ task 'db:create_migration' do
   MIGRATION
 
   puts path
+end
+
+desc 'dump the database'
+task 'db:schema:dump' do
+  ActiveRecord::Base.establish_connection(
+    adapter: 'sqlite3',
+    database: DATABASE_PATH
+  )
+  filename = File.absolute_path('db/schema.rb', File.dirname(__FILE__))
+  File.open(filename, 'w:utf-8') do |file|
+    ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+  end
+end
+
+desc 'migrate the database (options: VERSION=x, VERBOSE=false, SCOPE=blog).'
+task 'db:migrate' do
+    ActiveRecord::Base.establish_connection(
+    adapter: 'sqlite3',
+    database: DATABASE_PATH
+  )
+  ActiveRecord::Migration.verbose = ENV['VERBOSE'] ? ENV['VERBOSE'] == 'true' : true
+  ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths, ENV['VERSION'] ? ENV['VERSION'].to_i : nil) do |migration|
+    ENV['SCOPE'].blank? || (ENV['SCOPE'] == migration.scope)
+  end
+  Rake::Task['db:schema:dump'].invoke
+end
+
+desc 'rollback the database (options: VERSION=x, VERBOSE=false, STEPS=1).'
+task 'db:rollback' do
+    ActiveRecord::Base.establish_connection(
+    adapter: 'sqlite3',
+    database: DATABASE_PATH
+  )
+  ActiveRecord::Migration.verbose = ENV['VERBOSE'] ? ENV['VERBOSE'] == 'true' : true
+  ActiveRecord::Migrator.rollback(ActiveRecord::Migrator.migrations_paths, ENV['STEPS'] ? ENV['STEPS'].to_i : 1)
+  Rake::Task['db:schema:dump'].invoke
 end
 
 desc 'Retrieves the current schema version number'
