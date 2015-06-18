@@ -30,6 +30,21 @@ end
 
 # Index of landlords
 get '/landlords' do
+  if params[:name]
+    @search_results = Landlord.where(full_name: params[:name]).first
+  else
+    @search_results = []
+
+    address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+
+    address_of_landlord.each do |address|
+      address.landlords.each do |landlord|
+        @search_results << landlord
+      end
+    end
+    binding.pry
+  end
+
   erb :'landlords/index'
 end
 
@@ -45,6 +60,7 @@ end
 
 # Create new landlord and redirect user to landlord index
 post '/landlords' do
+
   #TODO
 end
 

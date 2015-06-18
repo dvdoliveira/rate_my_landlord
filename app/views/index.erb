@@ -10,18 +10,17 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Search By Name</div>
       <div class="panel-body">
-        <form method="post" action="/landlords">
-
+        
+        <form method="get" action="/landlords">
           <div class="form-group">
             <label for="">Name:</label>
-              <input type="text" class="form-control" id="">
+              <input type="text" class="form-control" id="" name="name">
           </div>
-
           <div class="form-group">
             <button type="submit" class="btn btn-default">Search</button>
           </div>
-
         </form>
+
       </div>
     </div>
   </div>
@@ -30,28 +29,28 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Search By Address</div>
       <div class="panel-body">
-        <form method="post" action="/landlords">
-
+        
+        <form method="get" action="/landlords">
           <div class="form-group">
             <label for="">Street Number:</label>
-            <input type="text" class="form-control" id="">
+            <input type="text" class="form-control" id="" name="street_number">
           </div>
 
           <div class="form-group">
             <label for="">Street Name:</label>
-              <input type="text" class="form-control" id="">
+              <input type="text" class="form-control" id="" name="street_name">
           </div>
 
           <div class="form-group">
             <label for="">City:</label>
-              <input type="text" class="form-control" id="">
+              <input type="text" class="form-control" id="" name="city">
           </div>
 
           <div class="form-group">
             <button type="submit" class="btn btn-default">Search</button>
           </div>
-
         </form>
+
       </div>
     </div>
   </div>
