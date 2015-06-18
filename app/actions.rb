@@ -31,10 +31,10 @@ end
 # Index of landlords
 get '/landlords' do
   if params[:name]
-    @search_results = Landlord.where(full_name: params[:name]).first
+    @search_results = Landlord.where(full_name: params[:name])
+    @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   else
     @search_results = []
-
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
 
     address_of_landlord.each do |address|
@@ -42,10 +42,10 @@ get '/landlords' do
         @search_results << landlord
       end
     end
-    binding.pry
-  end
 
-  erb :'landlords/index'
+    erb :'landlords/index'
+
+  end
 end
 
 # Show landlord profile page
