@@ -4,4 +4,6 @@ class Landlord < ActiveRecord::Base
 	belongs_to :user
 	has_many :addresses, through: :rentals
 
+	validates :full_name, presence: true
+
 end
