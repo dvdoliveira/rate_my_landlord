@@ -1,1 +1,63 @@
-<h1>Home Page</h1>
+
+<div class="jumbotron">
+  <h1><span class="glyphicon glyphicon-home"></span>  Welcome to Rate My Landlord</h1> 
+</div>
+
+<div class="container"></div>
+
+<div class="row">
+  <div class="col-sm-6 search-form">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Search By Name</div>
+      <div class="panel-body">
+        <form method="post" action="/landlords">
+
+          <div class="form-group">
+            <label for="">Name:</label>
+              <input type="text" class="form-control" id="">
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Search</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-form col-sm-6 ">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Search By Address</div>
+      <div class="panel-body">
+        <form method="post" action="/landlords">
+
+          <div class="form-group">
+            <label for="">Street Number:</label>
+            <input type="text" class="form-control" id="">
+          </div>
+
+          <div class="form-group">
+            <label for="">Street Name:</label>
+              <input type="text" class="form-control" id="">
+          </div>
+
+          <div class="form-group">
+            <label for="">City:</label>
+              <input type="text" class="form-control" id="">
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-default">Search</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<a href="/session/new" class="btn-lg btn-info btn-home" role="button"><span class="glyphicon glyphicon-log-in"> Login</span></a>
+
+<a href="/users/new" class="btn-lg btn-info btn-home" role="button"><span class="glyphicon glyphicon-user"> Sign-up</span></a>
