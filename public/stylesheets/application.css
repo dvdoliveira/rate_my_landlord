@@ -1,10 +1,75 @@
-.btn-home {
-  display: table;
+body {
+  background: url(http://www.hdwallpapersinn.com/wp-content/uploads/2014/10/gradient-abstract-hd-wallpaper-2560x1600-9694.jpg);
+}
+
+.title {
+  margin-top: 100px;
+  width: 50%;
   margin-left: auto;
   margin-right: auto;
-  vertical-align: middle;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  font-family: "helvetica", sans-serif;
+  font-size: 1px;
+  text-shadow: 0 2px 3px rgba(0,0,0,.5);
+}
+
+.title h1 {
+  font-size: 100px;
+  text-align: center;
+}
+
+.btn-home {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.btn-lg {
+  background: none;
+  border: #FCFCFC solid;
+  border-radius: 25px;
+  margin: 10px;
+  opacity: 0.9;
+}
+
+.btn-home :hover {
+  border: #FCFCFC solid;
+  background: rgba(0,0,0,.5);
+}
+
+.btn-lg :hover {
+  border: none;
+  background: none;
+}
+
+.btn-login {
+  text-align: center;
+}
+
+.btn-submit {
+  width: 50%;
+  background: none;
+  border: #FCFCFC solid;
+  border-radius: 15px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-login :hover {
+  background: rgba(255,255,255,0.4);
+  color: white;
+}
+
+.btn-details :hover{
+  border: #FCFCFC solid;
+  background: rgba(0,0,0,.5);
+  text-decoration: none;
+}
+
+.btn-details {
+  margin-left: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .row {
@@ -13,16 +78,70 @@
 }
 
 .login-form {
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-top: 25%;
-}
-
-.btn-login {
-  margin-left: 25%;
+  width: 50%;
+  margin-left: auto;
   margin-right: auto;
+  margin-top: 12%;
 }
 
-.btn-submit {
-  width: 70%;
+.login-form .panel {
+  background-color: rgba(0,0,0,.5);
+  border:none;
+  color: white;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
+
+.login-form .panel-heading {
+  background-color: rgba(51,204,255,.4);
+  border: none;
+}
+
+.search-form .panel{
+  background-color: rgba(0,0,0,.5);
+  border:none;
+  color: white;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.search-form .panel-heading {
+  background-color: rgba(51,204,255,.4);
+  border: none;
+}
+
+.landlord-holder {
+  background-color: rgba(51,204,255,.5);
+  border-radius: 15px;
+  margin: 80px;
+  border: #FCFCFC solid;
+}
+
+.landlord {
+  background-color: rgba(0,0,0,.6);
+  margin: 20px;
+  padding: 10px;
+  border: #FCFCFC solid;
+  color: white;
+}
+
+.landlord h3 {
+  margin-top: 1px;
+}
+
+.ratings {
+  float: right;
+}
+
+.comments-badge {
+  float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
