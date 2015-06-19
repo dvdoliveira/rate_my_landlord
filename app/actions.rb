@@ -1,7 +1,7 @@
 #Helpers
 helpers do
 
-# Keep user logged after sign-up anc checks if there is a current user
+  # Keep user logged after sign-up anc checks if there is a current user
   def current_user
     if session[:user_id]
       if @current_user.nil?
@@ -10,21 +10,21 @@ helpers do
     end
     @current_user
   end
-end
 
-# Error handling
-def display_error
-  error = session[:error]
-  session[:error] = nil
-  if error
-    return erb :'errors/error_display', layout: false, locals: {errors: error}
-  else
-    return ""
+  # Error handling
+  def display_error
+    error = session[:error]
+    session[:error] = nil
+    if error
+      return erb :'errors/error_display', locals: {errors: error}
+    else
+      return ""
+    end
   end
-end
 
-def set_error(msg)
-  session[:error] = {"Error" => [msg]}
+  def set_error(msg)
+    session[:error] = {"Error" => [msg]}
+  end
 end
 
 # Homepage (Search box)
@@ -52,7 +52,6 @@ end
 
 # Sign up form
 get '/users/new' do
-  # @user = User.new
   erb :'users/new'
 end
 
@@ -68,7 +67,7 @@ post '/users' do
     session[:email] = user.email
     redirect '/'
   else
-    session[:error] = user.errors.messages
+    # session[:error] = user.errors.full_messages
     redirect '/users/new'
   end
 end
