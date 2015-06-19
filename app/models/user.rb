@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   def compare_passwords
     if password != password_confirmation
-      errors.add(:base, "Passwords don't match. Please check it and try again.")
+      errors.add(:base, "Passwords don't match. Please verify and try again.")
     end
   end
 end

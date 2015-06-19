@@ -46,7 +46,7 @@ post '/session' do
     redirect '/'
   else
     set_error("Username not found or password incorrect.")
-    redirect '/session/new'
+    erb :'/session/new'
   end
 end
 

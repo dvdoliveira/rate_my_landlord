@@ -1,6 +1,6 @@
 <% if @user.errors.any? %>
-  <div>
-    <strong>Some issues with your user, please fix them:</strong>
+  <div class="alert alert-danger" role="alert">
+    <strong>The user could not be saved. Please try again.</strong>
     <ul>
       <% @user.errors.full_messages.each do |user| %>
         <li><%= user %></li>
