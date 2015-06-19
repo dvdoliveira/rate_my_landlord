@@ -1,3 +1,16 @@
+
+# Helpers
+# helpers do
+#   def current_user
+#     if session[:user_id]
+#       if @current_user.nil?
+#         @current_user = User.find(session[:user_id])
+#       end
+#     end
+#     @current_user
+#   end
+# end
+
 # Homepage (Search box)
 get '/' do
   erb :index
@@ -20,15 +33,29 @@ end
 
 # Sign-up and redirects users to homepage
 post '/users' do
-  redirect '/'
+  if params[:password] == params[:password_confirmation]
+    user = User.create(
+      email: params[:email],
+      password_hash: params[:password_hash],
+      password_salt: params[:password_salt]
+    )
+    binding.pry
+    session[:user_id] = user.id
+    session[:email] = user.email
+    redirect '/'
+  else
+    redirect '/users/new'
+  end
 end
 
 # Logout action and redirects logged out users to homepage
 delete '/session' do
+  session.clear
   redirect '/'
 end
 
 # Index of landlords
+
 get '/landlords' do
   if params[:name]
     name_array = params[:name].split(" ")
@@ -42,8 +69,8 @@ get '/landlords' do
               COUNT(*) as rank
               FROM(#{subselect}) as landlords GROUP BY full_name ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
+
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
-  
   elsif params[:street_number]
     @search_results = []
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
@@ -54,9 +81,7 @@ get '/landlords' do
       end
     end
     erb :'landlords/index'
-  end
-  
-  if !@search_results
+  elsif 
     @all_landlords = Landlord.all
     erb :'landlords/index'
   end
