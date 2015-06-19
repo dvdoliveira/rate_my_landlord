@@ -82,6 +82,7 @@ end
 # Index of landlords
 
 get '/landlords' do
+  @search_results = []
   if params[:name]
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
@@ -97,7 +98,6 @@ get '/landlords' do
 
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   elsif params[:street_number]
-    @search_results = []
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
 
     address_of_landlord.each do |address|
@@ -107,7 +107,7 @@ get '/landlords' do
     end
     erb :'landlords/index'
   elsif 
-    @all_landlords = Landlord.all
+    @search_results = Landlord.all
     erb :'landlords/index'
   end
 end
