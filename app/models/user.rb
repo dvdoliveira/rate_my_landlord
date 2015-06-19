@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
 	has_many :landlords
 	has_many :ratings
 
-	validates :email, presence: true, uniqueness: true
+	validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/ }
   validates :password, presence: true, length: { minimum: 6 }
-  validates_confirmation_of :password, message: 'should match confirmation'
+  validates :password, confirmation: true
 
 
   def encrypt_password
