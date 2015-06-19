@@ -1,1 +1,28 @@
 <h1>Here goes the new address form!</h1>
+
+<div>
+<h2><strong>New Landlord Address</strong></h2>
+	<form method="post" action="/landlords/<%=params[:id]%>/addresses">
+
+		<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+		
+		Unit Number:</br>
+		<input type="text" name="unit_number">
+		<br/>
+		
+		Street Number:</br>
+		<input type="text" name="street_number">
+		<br/>
+		
+		Street Name:</br>
+		<input type="text" name="street_name">
+		<br/>
+		
+		City:</br>
+		<input type="text" name="city">
+		<br/><br/>
+	
+		<input type="submit" value="Add Landlord Address">
+
+	</form>
+</div>

@@ -2,3 +2,7 @@
 
 <%=@landlord.full_name%>
 Here is some text
+<form method="get" action="/landlords/<%=params[:id]%>/addresses/new">
+	<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+	<input type="submit" value="Add Landlord Address">
+</form>
