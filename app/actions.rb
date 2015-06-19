@@ -112,20 +112,23 @@ get '/landlords' do
   end
 end
 
+# Show form to create new landlord profile
+get '/landlords/new' do
+  erb :'/landlords/new'
+end
+
 # Show landlord profile page
 get '/landlords/:id' do
   @landlord = Landlord.find(params[:id])
   erb :'landlords/show'
 end
 
-# Show form to create new landlord profile
-get '/landlords/new' do
-  erb :'landlords/new'
-end
-
-# Create new landlord and redirect user to landlord index
-post '/landlords' do
-
+# Create new landlord and redirect user to landlord profiles
+post '/landlords/' do
+  @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
+  @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+  Rental.create(landlord: @landlord, address: @address)
+  redirect "/landlords/#{@landlord.id}"
   #TODO
 end
 

@@ -6,3 +6,7 @@ Here is some text
 	<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
 	<input type="submit" value="Add Landlord Address">
 </form>
+<form method="get" action="/landlords/<%=params[:id]%>/ratings/new">
+	<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+	<input type="submit" value="Add Rating">
+</form>
