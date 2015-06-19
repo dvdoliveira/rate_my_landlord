@@ -30,6 +30,7 @@ end
 
 # Index of landlords
 get '/landlords' do
+  @landlords= Landlord.all
   erb :'landlords/index'
 end
 

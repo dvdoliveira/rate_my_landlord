@@ -1,0 +1,23 @@
+<div class="title">
+  <h1><span class="glyphicon glyphicon-search"></span>  Search</h1> 
+</div>
+
+<div class = "landlord-holder">
+  <% @landlords.each do |landlord| %>
+    <div class="landlord">
+
+      <h3>Name: <%= landlord.full_name %></h3>
+
+      <div class = "ratings">
+        <%= landlord.average_rating %> 
+      </div>
+
+      <div class = "btn-details">
+        <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info" role="button"> More Details</a>
+      </div>
+
+      <div class = "comments-badge">Comments <span class="badge"></span><%= landlord.comments.count %> </div><br>
+
+    </div>
+  <% end %>
+</div>
