@@ -53,8 +53,16 @@
       </form>
     </div>
 
+    <div class = "col-sm-12 address-new-button">
+      <form method="get" action="/landlords/<%=params[:id]%>/ratings/new">
+        <input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+        <input type="submit" value="Add Rating" class="btn btn-address-form">
+      </form>
+    </div>
+
+
   </div>
 
   <hr/>
-
 </div>
+
