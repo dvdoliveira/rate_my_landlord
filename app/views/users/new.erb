@@ -1,18 +1,10 @@
+<%= display_error %>
+
 <div class="login-form">
     <div class="panel panel-primary">
       <div class="panel-heading"></div>
       <div class="panel-body">
         <form method="post" action="/users">
-          <% if @message %>
-            <div class="error-messages">
-              <h2>Form is invalid. Please check the error messages below:</h2>
-              <ul>
-                <% for message in @user.errors.full_messages %>
-                  <li><%= messages %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
           <div class="form-group">
             <label>Email:</label>
               <input type="text" class="form-control" name="email">

@@ -1,15 +1,31 @@
+#Helpers
+helpers do
 
-# Helpers
-# helpers do
-#   def current_user
-#     if session[:user_id]
-#       if @current_user.nil?
-#         @current_user = User.find(session[:user_id])
-#       end
-#     end
-#     @current_user
-#   end
-# end
+# Keep user logged after sign-up anc checks if there is a current user
+  def current_user
+    if session[:user_id]
+      if @current_user.nil?
+        @current_user = User.find(session[:user_id])
+      end
+    end
+    @current_user
+  end
+end
+
+# Error handling
+def display_error
+  error = session[:error]
+  session[:error] = nil
+  if error
+    return erb :'errors/error_display', layout: false, locals: {errors: error}
+  else
+    return ""
+  end
+end
+
+def set_error(msg)
+  session[:error] = {"Error" => [msg]}
+end
 
 # Homepage (Search box)
 get '/' do
@@ -23,7 +39,15 @@ end
 
 # Login and redirects users to homepage
 post '/session' do
-  redirect '/'
+  user = User.where(email: params[:email]).first
+  if user && user.password_hash == BCrypt::Engine.hash_secret(params[:password], user.password_salt)
+    session[:user_id] = user.id
+    session[:email] = user.email
+    redirect '/'
+  else
+    set_error("Username not found or password incorrect.")
+    redirect '/session/new'
+  end
 end
 
 # Sign up form
@@ -44,12 +68,13 @@ post '/users' do
     session[:email] = user.email
     redirect '/'
   else
+    session[:error] = user.errors.messages
     redirect '/users/new'
   end
 end
 
 # Logout action and redirects logged out users to homepage
-delete '/session' do
+get '/logout' do
   session.clear
   redirect '/'
 end
@@ -123,6 +148,3 @@ end
 post '/landlords/:id/addresses' do
   #TODO
 end
-
-
-
