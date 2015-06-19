@@ -32,6 +32,7 @@ end
 get '/landlords' do
   if params[:name]
     @search_results = Landlord.where(full_name: params[:name])
+    # binding.pry
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   else
     @search_results = []
@@ -50,6 +51,7 @@ end
 
 # Show landlord profile page
 get '/landlords/:id' do
+  @landlord = Landlord.find(params[:id])
   erb :'landlords/show'
 end
 
