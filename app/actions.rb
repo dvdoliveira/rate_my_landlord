@@ -42,9 +42,9 @@ get '/landlords' do
               COUNT(*) as rank
               FROM(#{subselect}) as landlords GROUP BY full_name ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
-
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
-  else
+  
+  elsif params[:street_number]
     @search_results = []
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
 
@@ -53,9 +53,12 @@ get '/landlords' do
         @search_results << landlord
       end
     end
-
     erb :'landlords/index'
-
+  end
+  
+  if !@search_results
+    @all_landlords = Landlord.all
+    erb :'landlords/index'
   end
 end
 
@@ -92,7 +95,7 @@ get '/landlords/:id/addresses/new' do
 end
 
 # Create new address to a landlord and redirect user back to landlord profile
-post '/landlordds/:id/addresses' do
+post '/landlords/:id/addresses' do
   #TODO
 end
 
