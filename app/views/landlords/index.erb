@@ -1,23 +1,21 @@
-<div class="title">
-  <h1><span class="glyphicon glyphicon-search"></span>  Search</h1> 
-</div>
+<h1>The search results show up here</h1>
 
-<div class = "landlord-holder">
-  <% @landlords.each do |landlord| %>
-    <div class="landlord">
+<%if @search_results.empty?%>
+	<p>No results found!</p>
+<%end%>	
 
-      <h3>Name: <%= landlord.full_name %></h3>
+<%@search_results.each do |landlord|%>
+	<div class="row">
+		<div class="col-md-6">
 
-      <div class = "ratings">
-        <%= landlord.average_rating %> 
-      </div>
+			<h3>
+				<a href = "/landlords/<%=landlord.id%>"><%="#{landlord.full_name}"%></a>
+			</h3>
 
       <div class = "btn-details">
         <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info" role="button"> More Details</a>
       </div>
 
-      <div class = "comments-badge">Comments <span class="badge"></span><%= landlord.comments.count %> </div><br>
-
-    </div>
-  <% end %>
-</div>
+		</div>
+	</div>
+<%end%>

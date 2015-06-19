@@ -8,56 +8,52 @@
     <a href="/users/new" class="btn-lg btn-info" role="button"><span class="glyphicon glyphicon-user"> Sign-up</span></a>
 </div>
 
+<div class="row">
+  <div class="col-sm-6 search-form">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Search By Name</div>
+      <div class="panel-body">
+        
+        <form method="get" action="/landlords">
+          <div class="form-group">
+            <label for="">Name:</label>
+              <input type="text" class="form-control" id="" name="name">
+          </div>
+          <div class="form-group btn-login">
+            <button type="submit" class="btn btn-submit">Search</button>
+          </div>
+        </form>
 
-<div class = "with-background">
-  <div class="row">
-    <div class="search-form col-sm-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">Search By Name</div>
-        <div class="panel-body">
-          <form method="post" action="/landlords">
-
-            <div class="form-group">
-              <label for="">Name:</label>
-                <input type="text" class="form-control" id="">
-            </div>
-
-            <div class="form-group btn-login">
-              <button type="submit" class="btn btn-submit">Search</button>
-            </div>
-
-          </form>
-        </div>
       </div>
     </div>
+  </div>
 
-    <div class="search-form col-sm-6 ">
-      <div class="panel panel-primary">
-        <div class="panel-heading">Search By Address</div>
-        <div class="panel-body">
-          <form method="post" action="/landlords">
+  <div class="search-form col-sm-6 ">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Search By Address</div>
+      <div class="panel-body">
+        
+        <form method="get" action="/landlords">
+          <div class="form-group">
+            <label for="">Street Number:</label>
+            <input type="text" class="form-control" id="" name="street_number">
+          </div>
 
-            <div class="form-group">
-              <label for="">Street Number:</label>
-              <input type="text" class="form-control" id="">
-            </div>
+          <div class="form-group">
+            <label for="">Street Name:</label>
+              <input type="text" class="form-control" id="" name="street_name">
+          </div>
 
-            <div class="form-group">
-              <label for="">Street Name:</label>
-                <input type="text" class="form-control" id="">
-            </div>
+          <div class="form-group">
+            <label for="">City:</label>
+              <input type="text" class="form-control" id="" name="city">
+          </div>
 
-            <div class="form-group">
-              <label for="">City:</label>
-                <input type="text" class="form-control" id="">
-            </div>
+          <div class="form-group btn-login">
+            <button type="submit" class="btn btn-submit">Search</button>
+          </div>
+        </form>
 
-            <div class="form-group btn-login">
-              <button type="submit" class="btn btn-submit">Search</button>
-            </div>
-
-          </form>
-        </div>
       </div>
     </div>
   </div>

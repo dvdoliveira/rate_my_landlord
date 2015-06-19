@@ -30,12 +30,38 @@ end
 
 # Index of landlords
 get '/landlords' do
-  @landlords= Landlord.all
-  erb :'landlords/index'
+  if params[:name]
+    name_array = params[:name].split(" ")
+    subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
+    query = "SELECT
+              id,
+              user_id,
+              full_name,
+              average_rating,
+              friendly,
+              COUNT(*) as rank
+              FROM(#{subselect}) as landlords GROUP BY full_name ORDER BY rank DESC;"
+    @search_results = Landlord.find_by_sql(query)
+
+    @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
+  else
+    @search_results = []
+    address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+
+    address_of_landlord.each do |address|
+      address.landlords.each do |landlord|
+        @search_results << landlord
+      end
+    end
+
+    erb :'landlords/index'
+
+  end
 end
 
 # Show landlord profile page
 get '/landlords/:id' do
+  @landlord = Landlord.find(params[:id])
   erb :'landlords/show'
 end
 
@@ -46,6 +72,7 @@ end
 
 # Create new landlord and redirect user to landlord index
 post '/landlords' do
+
   #TODO
 end
 
