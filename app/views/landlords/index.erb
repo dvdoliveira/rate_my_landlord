@@ -5,11 +5,51 @@
 <%if !@search_results %>
 
 	<%@all_landlords.each do |landlord|%>
-		<div class="row">
-			<div class="col-md-6">
-				<h3>
-					<a href = "/landlords/<%=landlord.id%>"><%="#{landlord.full_name}"%></a>
-				</h3>
+		<div class="row total-ratings-row">
+			<div class="landlord">
+				<h1 class="landlord-name"><%=landlord.full_name%></h1>
+			  <div class="row total-ratings-row">
+			    <div class = "col-sm-4 beer-image-column">
+			      <%if landlord.friendly%>
+			        <img class = "beer-image"src="/images/beer-icon.png">
+			      <%else%>
+			        <img class = "beer-image"src="/images/empty-beer-icon.png">
+			      <%end%>
+			    </div>
+
+			    <div class = "rating-bar col-sm-8">
+			      <p class= "rating-title">Total Rating:</p>
+			      <div class="progress">
+			        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(landlord.average_rating * 0)%>" style="width: <%=(landlord.average_rating * 20)%>%"> <%= landlord.average_rating %></div>
+			      </div>
+
+			      <div class = "sub-rating">
+			        <p class= "rating-title">Communication:</p>
+			        <div class="progress progress-orange">
+			          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(landlord.average_rating * 0)%>" style="width: <%=(landlord.average_rating * 20)%>%"> <%= landlord.average_rating %></div>
+			        </div>
+			      </div>
+
+			      <div class = "sub-rating">
+			        <p class= "rating-title">Helpfulness:</p>
+			        <div class="progress progress-orange">
+			          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(landlord.average_rating * 0)%>" style="width: <%=(landlord.average_rating * 20)%>%"> <%= landlord.average_rating %></div>
+			        </div>
+			      </div>
+
+			      <div class = "sub-rating">
+			        <p class= "rating-title">Reliability:</p>
+			        <div class="progress progress-orange">
+			          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(landlord.average_rating * 0)%>" style="width: <%=(landlord.average_rating * 20)%>%"> <%= landlord.average_rating %></div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class = "btn-details">
+        	<a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info" role="button"> More Details</a>
+      	</div>
+
 			</div>
 		</div>
 	<%end%>	
