@@ -34,7 +34,7 @@
             <li><a href="/landlords">Browse</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <% if @current_user %>
+          <% if current_user %>
             <li><a href="logout">Logout</a></li>
           <% else %>
             <li><a href="/session/new">Login</a></li>

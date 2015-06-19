@@ -52,23 +52,23 @@ end
 
 # Sign up form
 get '/users/new' do
+  @user = User.new
   erb :'users/new'
 end
 
 # Sign-up and redirects users to homepage
 post '/users' do
-  if params[:password] == params[:password_confirmation]
-    user = User.create(
+  @user = User.new(
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
     )
-    session[:user_id] = user.id
-    session[:email] = user.email
+  if @user.save
+    session[:user_id] = @user.id
+    session[:email] = @user.email
     redirect '/'
   else
-    # session[:error] = user.errors.full_messages
-    redirect '/users/new'
+    erb :'users/new'
   end
 end
 
