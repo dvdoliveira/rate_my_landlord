@@ -1,3 +1,16 @@
+
+# Helpers
+# helpers do
+#   def current_user
+#     if session[:user_id]
+#       if @current_user.nil?
+#         @current_user = User.find(session[:user_id])
+#       end
+#     end
+#     @current_user
+#   end
+# end
+
 # Homepage (Search box)
 get '/' do
   erb :index
@@ -15,16 +28,30 @@ end
 
 # Sign up form
 get '/users/new' do
+  # @user = User.new
   erb :'users/new'
 end
 
 # Sign-up and redirects users to homepage
 post '/users' do
-  redirect '/'
+  if params[:password] == params[:password_confirmation]
+    user = User.create(
+      email: params[:email],
+      password_hash: params[:password_hash],
+      password_salt: params[:password_salt]
+    )
+    binding.pry
+    session[:user_id] = user.id
+    session[:email] = user.email
+    redirect '/'
+  else
+    redirect '/users/new'
+  end
 end
 
 # Logout action and redirects logged out users to homepage
 delete '/session' do
+  session.clear
   redirect '/'
 end
 
