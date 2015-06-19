@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618185650) do
+ActiveRecord::Schema.define(version: 20150618230337) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "unit_number"
@@ -54,9 +54,10 @@ ActiveRecord::Schema.define(version: 20150618185650) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_hash"
+    t.string   "password_salt"
   end
 
 end
