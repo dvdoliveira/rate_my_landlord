@@ -34,8 +34,12 @@
             <li><a href="/landlords">Browse</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/session/new">Login</a></li>
-          <li><a href="/users/new">Sign-up</a></li> 
+          <% if @current_user %>
+            <li><a href="logout">Logout</a></li>
+          <% else %>
+            <li><a href="/session/new">Login</a></li>
+            <li><a href="/users/new">Sign-up</a></li> 
+          <% end %>
         </ul>
       </div>
     </div>

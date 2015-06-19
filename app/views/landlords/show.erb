@@ -2,7 +2,6 @@
   <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
 </div>
 
-
 <div class="landlord">
 
   <div class="row total-ratings-row">
@@ -65,3 +64,8 @@
     </div>
   </div>
 </div>
+
+<form method="get" action="/landlords/<%=params[:id]%>/addresses/new">
+	<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+	<input type="submit" value="Add Landlord Address">
+</form>

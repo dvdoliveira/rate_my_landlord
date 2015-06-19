@@ -1,15 +1,31 @@
+#Helpers
+helpers do
 
-# Helpers
-# helpers do
-#   def current_user
-#     if session[:user_id]
-#       if @current_user.nil?
-#         @current_user = User.find(session[:user_id])
-#       end
-#     end
-#     @current_user
-#   end
-# end
+  # Keep user logged after sign-up anc checks if there is a current user
+  def current_user
+    if session[:user_id]
+      if @current_user.nil?
+        @current_user = User.find(session[:user_id])
+      end
+    end
+    @current_user
+  end
+
+  # Error handling
+  def display_error
+    error = session[:error]
+    session[:error] = nil
+    if error
+      return erb :'errors/error_display', locals: {errors: error}
+    else
+      return ""
+    end
+  end
+
+  def set_error(msg)
+    session[:error] = {"Error" => [msg]}
+  end
+end
 
 # Homepage (Search box)
 get '/' do
@@ -23,12 +39,19 @@ end
 
 # Login and redirects users to homepage
 post '/session' do
-  redirect '/'
+  user = User.where(email: params[:email]).first
+  if user && user.password_hash == BCrypt::Engine.hash_secret(params[:password], user.password_salt)
+    session[:user_id] = user.id
+    session[:email] = user.email
+    redirect '/'
+  else
+    set_error("Username not found or password incorrect.")
+    redirect '/session/new'
+  end
 end
 
 # Sign up form
 get '/users/new' do
-  # @user = User.new
   erb :'users/new'
 end
 
@@ -37,25 +60,26 @@ post '/users' do
   if params[:password] == params[:password_confirmation]
     user = User.create(
       email: params[:email],
-      password_hash: params[:password_hash],
-      password_salt: params[:password_salt]
+      password: params[:password],
+      password_confirmation: params[:password_confirmation]
     )
-    binding.pry
     session[:user_id] = user.id
     session[:email] = user.email
     redirect '/'
   else
+    # session[:error] = user.errors.full_messages
     redirect '/users/new'
   end
 end
 
 # Logout action and redirects logged out users to homepage
-delete '/session' do
+get '/logout' do
   session.clear
   redirect '/'
 end
 
 # Index of landlords
+
 get '/landlords' do
   if params[:name]
     name_array = params[:name].split(" ")
@@ -71,7 +95,7 @@ get '/landlords' do
     @search_results = Landlord.find_by_sql(query)
 
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
-  else
+  elsif params[:street_number]
     @search_results = []
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
 
@@ -80,9 +104,10 @@ get '/landlords' do
         @search_results << landlord
       end
     end
-
     erb :'landlords/index'
-
+  elsif 
+    @all_landlords = Landlord.all
+    erb :'landlords/index'
   end
 end
 
@@ -115,13 +140,12 @@ end
 
 # Show form to create new address
 get '/landlords/:id/addresses/new' do
+  @landlord = Landlord.find(params[:id])
   erb :'addresses/new'
 end
 
 # Create new address to a landlord and redirect user back to landlord profile
-post '/landlordds/:id/addresses' do
-  #TODO
+post '/landlords/:id/addresses' do
+  Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+  redirect "landlords/#{params[:landlord_id]}"
 end
-
-
-
