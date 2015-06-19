@@ -17,8 +17,7 @@ body {
 }
 
 .btn-home {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -80,7 +79,7 @@ body {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 .login-form .panel {
@@ -95,7 +94,15 @@ body {
   border: none;
 }
 
+.alert {
+  width: 400px;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .search-form .panel{
+  margin-top: 40px;
   background-color: rgba(0,0,0,.5);
   border:none;
   color: white;
@@ -116,9 +123,11 @@ body {
 
 .landlord {
   background-color: rgba(0,0,0,.6);
-  margin: 20px;
+  margin-top: 50px;
   border: #FCFCFC solid;
   color: white;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .no-results {
@@ -141,37 +150,52 @@ body {
 }
 
 .rating-title {
-  text-align: right;
-}
-
-.rating-bar {
-
+  float: left;
+  margin-top: 4px;
 }
 
 .rating-bar .progress {
-  width: 100%;
-  margin-left: auto;
-  margin-right: 10%;
-}
-
-.ratings-row {
-  margin-right: 0;
+  margin-left: 120px;
+  height: 28px;
 }
 
 .total-ratings-row {
   margin: 0; 
 }
 
-.progress-bar-warning {
-
+.sub-rating {
+  margin-left: 20%;
 }
 
 .beer-image {
   width: 200px;
   height: 200px;
+  margin-left: 20%; 
+}
+
+.beer-image-column {
+  width: ;
   margin-left: auto;
   margin-right: auto;
 }
+
+.address-list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%
+}
+
+.btn-address-form {
+  background: none;
+  border: #FCFCFC solid;
+  border-radius: 25px;
+  width: 60%;
+}
+
+.address-new-button {
+
+}
+
 
 
 

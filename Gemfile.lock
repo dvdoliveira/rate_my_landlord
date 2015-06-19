@@ -32,6 +32,8 @@ GEM
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.6.3)
+    rack-flash (0.1.2)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -81,6 +83,7 @@ DEPENDENCIES
   bcrypt
   pry
   puma
+  rack-flash
   rake
   shotgun
   sinatra

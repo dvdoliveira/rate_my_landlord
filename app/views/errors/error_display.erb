@@ -1,6 +1,8 @@
-<h3>ERRORS</h3>
-<ol>
+<div class="alert alert-danger" role="alert">
+<strong><center>Login Failed</center></strong>
+<ul>
 <% errors.each do |attr, error_msg| %>
   <li><%= attr %>: <%= error_msg.join(", ") %></li>
 <% end %>
-</ol>
+</ul>
+</div>
