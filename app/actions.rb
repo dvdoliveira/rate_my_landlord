@@ -31,8 +31,18 @@ end
 # Index of landlords
 get '/landlords' do
   if params[:name]
-    @search_results = Landlord.where(full_name: params[:name])
-    # binding.pry
+    name_array = params[:name].split(" ")
+    subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
+    query = "SELECT
+              id,
+              user_id,
+              full_name,
+              average_rating,
+              friendly,
+              COUNT(*) as rank
+              FROM(#{subselect}) as landlords GROUP BY full_name ORDER BY rank DESC;"
+    @search_results = Landlord.find_by_sql(query)
+
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   else
     @search_results = []
