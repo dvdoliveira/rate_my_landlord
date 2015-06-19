@@ -70,7 +70,7 @@ get '/landlords' do
               FROM(#{subselect}) as landlords GROUP BY full_name ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
-  
+    
   elsif params[:street_number]
     @search_results = []
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
