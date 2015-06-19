@@ -37,10 +37,9 @@ post '/users' do
   if params[:password] == params[:password_confirmation]
     user = User.create(
       email: params[:email],
-      password_hash: params[:password_hash],
-      password_salt: params[:password_salt]
+      password: params[:password],
+      password_confirmation: params[:password_confirmation]
     )
-    binding.pry
     session[:user_id] = user.id
     session[:email] = user.email
     redirect '/'
