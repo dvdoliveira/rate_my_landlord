@@ -16,10 +16,10 @@ class Rating < ActiveRecord::Base
 	def update_landlord_average_rating
 		all_landlord_ratings = Rating.where(landlord_id: landlord_id)
 		num_landlord_ratings = all_landlord_ratings.length
-		communication_indicator = all_landlord_ratings.sum(:communication).to_f / num_landlord_ratings
-		helpfulness_indicator = all_landlord_ratings.sum(:helpfulness).to_f / num_landlord_ratings
-		reliability_indicator = all_landlord_ratings.sum(:reliability).to_f / num_landlord_ratings
-		average_rating = (communication_indicator + helpfulness_indicator + reliability_indicator) / 3
+		landlord.average_communication = all_landlord_ratings.sum(:communication).to_f / num_landlord_ratings
+		landlord.average_helpfulness = all_landlord_ratings.sum(:helpfulness).to_f / num_landlord_ratings
+		landlord.average_reliability = all_landlord_ratings.sum(:reliability).to_f / num_landlord_ratings
+		average_rating = (landlord.average_communication + landlord.average_helpfulness + landlord.average_reliability) / 3
 		landlord.average_rating = (average_rating * 2).round / 2.0
 		landlord.save
 	end

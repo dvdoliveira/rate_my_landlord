@@ -9,6 +9,7 @@ Rake::Task["db:drop"].clear
 DATABASE_PATH = File.absolute_path("db/db.sqlite3", File.dirname(__FILE__))
 
 # NOTE: Assumes SQLite3 DB
+
 desc "create the database"
 task "db:create" do
   touch 'db/db.sqlite3'

@@ -28,6 +28,13 @@ helpers do
 end
 
 # Homepage (Search box)
+
+# Logout action and redirects logged out users to homepage
+get '/logout' do
+  session.clear
+  redirect '/'
+end
+
 get '/' do
   erb :index
 end
@@ -72,15 +79,10 @@ post '/users' do
   end
 end
 
-# Logout action and redirects logged out users to homepage
-get '/logout' do
-  session.clear
-  redirect '/'
-end
-
 # Index of landlords
 
 get '/landlords' do
+  @search_results = []
   if params[:name]
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
@@ -96,7 +98,6 @@ get '/landlords' do
 
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   elsif params[:street_number]
-    @search_results = []
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
 
     address_of_landlord.each do |address|
@@ -106,9 +107,14 @@ get '/landlords' do
     end
     erb :'landlords/index'
   elsif 
-    @all_landlords = Landlord.all
+    @search_results = Landlord.all
     erb :'landlords/index'
   end
+end
+
+# Show form to create new landlord profile
+get '/landlords/new' do
+  erb :'/landlords/new'
 end
 
 # Show landlord profile page
@@ -117,14 +123,12 @@ get '/landlords/:id' do
   erb :'landlords/show'
 end
 
-# Show form to create new landlord profile
-get '/landlords/new' do
-  erb :'landlords/new'
-end
-
-# Create new landlord and redirect user to landlord index
-post '/landlords' do
-
+# Create new landlord and redirect user to landlord profiles
+post '/landlords/' do
+  @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
+  @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+  Rental.create(landlord: @landlord, address: @address)
+  redirect "/landlords/#{@landlord.id}"
   #TODO
 end
 
