@@ -1,3 +1,67 @@
-<h1>Here goes the landlord's profile!</h1>
+<div class="title">
+  <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
+</div>
 
-<%=@landlord.full_name%>
+
+<div class="landlord">
+
+  <div class="row total-ratings-row">
+    <div class = "col-sm-2">
+      <%if @landlord.friendly%>
+        <img class = "beer-image"src="/images/beer-icon.png">
+      <%else%>
+        <img class = "beer-image"src="/images/empty-beer-icon.png">
+      <%end%>
+    </div>
+
+
+    <div class = "rating-title col-sm-4">
+      <p>Total Rating:</p>
+    </div>
+
+    <div class = "rating-bar col-sm-6">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ratings-row">
+    <div class = "col-sm-2"></div>
+    <div class = "rating-title col-sm-4">
+        <p>Communication:</p>
+    </div>
+
+    <div class = "rating-bar col-sm-6">
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ratings-row">
+    <div class = "col-sm-2"></div>
+    <div class = "rating-title col-sm-4">
+        <p>Helpfulness:</p>
+    </div>
+
+    <div class = "rating-bar col-sm-6">
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ratings-row">
+    <div class = "col-sm-2"></div>
+    <div class = "rating-title col-sm-4">
+        <p>Reliability:</p>
+    </div>
+
+    <div class = "rating-bar col-sm-6">
+      <div class="progress">
+        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+      </div>
+    </div>
+  </div>
+</div>

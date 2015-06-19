@@ -1,21 +1,50 @@
-<h1>The search results show up here</h1>
+<div class="title">
+  <h1><span class="glyphicon glyphicon-search"></span>  Search</h1> 
+</div>
 
-<%if @search_results.empty?%>
-	<p>No results found!</p>
-<%end%>	
 
-<%@search_results.each do |landlord|%>
-	<div class="row">
-		<div class="col-md-6">
+<div class = "landlord-holder">
 
-			<h3>
-				<a href = "/landlords/<%=landlord.id%>"><%="#{landlord.full_name}"%></a>
-			</h3>
+  <%if @search_results.empty?%>
+  <div class="no-results">
+    <h1>No results found!</h1>
+  </div>
+  <%end%> 
 
-      <div class = "btn-details">
-        <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info" role="button"> More Details</a>
-      </div>
+  <%@search_results.each do |landlord|%>
+  	<!-- <div class="landlord">
 
-		</div>
-	</div>
-<%end%>
+        <div class = "ratings col-sm-6">
+          <p>
+            Total Rating:
+          </p>
+          <div class="progress total-rating">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(landlord.average_rating * 0)%>" style="width: <%=(landlord.average_rating * 20)%>%"> <%= landlord.average_rating %> 
+          </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow=""
+            aria-valuemin="0" aria-valuemax="100" style="width:60%">
+          </div>
+        </div>
+          </div>
+          <p>
+            Communication:
+          </p>
+          <p>
+            Helpfulness:
+          </p>
+          <p>
+            Reliability: 
+          </p>
+        </div>
+
+  			<h3>
+  				Name: <%=landlord.full_name%>
+  			</h3>
+
+        <div class = "btn-details">
+          <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info" role="button"> More Details</a>
+        </div>
+  	 --></div>
+  <%end%>
+</div>
