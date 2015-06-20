@@ -121,6 +121,9 @@ end
 # Show landlord profile page
 get '/landlords/:id' do
   @landlord = Landlord.find(params[:id])
+  @rentals = Rental.where(landlord_id: params[:id])
+  @addresses = []
+  # Address.where(id: @rentals[:address_id])
   erb :'landlords/show'
 end
 
@@ -166,6 +169,7 @@ end
 
 # Create new address to a landlord and redirect user back to landlord profile
 post '/landlords/:id/addresses' do
-  Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+  @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+  Rental.create(landlord_id: params[:landlord_id], address_id: @address[:id])
   redirect "landlords/#{params[:landlord_id]}"
 end
