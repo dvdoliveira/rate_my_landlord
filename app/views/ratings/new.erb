@@ -1,95 +1,46 @@
-
-<div class="title">
-  <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
-</div>
-<div class="landlord">
-  <div class="row total-ratings-row">
-    <div class = "col-sm-4 beer-image-column text-center">
-      <%if @landlord.friendly%>
-        <img class = "beer-image"src="/images/beer-icon.png">
-      <%else%>
-        <img class = "beer-image"src="/images/empty-beer-icon.png">
-      <%end%>
+<div class="well">
+  <form method="post" action="/landlords/<%= params[:id]%>/ratings">
+    <input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+    <div class="form-group">
+      <label style="color: black;">Communication:</label>
+      <input id="communication" name="communication" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+      <script type="javascript">$("#communication").rating();</script>
     </div>
-    <div class = "rating-bar col-sm-8">
-      <p class= "rating-title">Total Rating:</p>
-      <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
-      </div>
-
-      <div class = "sub-rating">
-        <p class= "rating-title">Communication:</p>
-        <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
-        </div>
-      </div>
-
-      <div class = "sub-rating">
-        <p class= "rating-title">Helpfulness:</p>
-        <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
-        </div>
-      </div>
-
-      <div class = "sub-rating">
-        <p class= "rating-title">Reliability:</p>
-        <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
-        </div>
-      </div>
-
+    <div class="form-group">
+      <label style="color: black;">Reliability:</label>
+      <input id="reliability" name="reliability" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+      <script type="javascript">$("#reliability").rating();</script>
     </div>
-  </div>
-
-<hr/>
-
-<div class="login-form">
-    <div class="panel panel-primary">
-      <div class="panel-heading"></div>
-      <div class="panel-body">
-        <form method="post" action="/landlords/<%= params[:id]%>/ratings">
-          <input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
-          <div class="form-group">
-            <label>Communication:</label>
-            <input id="communication" name="communication" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-            <script type="javascript">$("#communication").rating();</script>
-          </div>
-          <div class="form-group">
-            <label>Reliability:</label>
-            <input id="reliability" name="reliability" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-            <script type="javascript">$("#reliability").rating();</script>
-          </div>
-          <div class="form-group">
-            <label>Helpfulness:</label>
-            <input id="helpfulness" name="helpfulness" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-            <script type="javascript">$("#helpfulness").rating();</script>
-          </div>
-
-          <p>Would you have a beer with your landlord?</p>
-
-          <img src="/images/empty-beer-icon.png" data-swap="/images/beer-icon.png" id="bg" style="width: 10%; height: 10%"/> </br>
-          <script>
-            $(function() {
-              $('#bg').click(function(){
-                var current_src = $(this).attr("src");
-                var swap_src = $(this).attr("data-swap");
-                $(this).attr("src", swap_src).attr("data-swap", current_src);
-                if($(this).attr("src") == "/images/beer-icon.png") {
-                  $("#friendly").val(true);
-                }
-                else {
-                  $("#friendly").val(false);
-                }
-              });
-            });
-          </script>
-          <input type="hidden" value="friendly" id="friendly" name="friendly"/>
-          <div class="form-group">
-            <label>Comment:</label>
-              <textarea name="comment" rows="10" cols="30" class="form-control" value="<%= @rating.comment %>" ></textarea>
-          </div>
-          <button type="submit" class="btn btn-submit">Add Rating</button>
-        </form>
-      </div>
+    <div class="form-group">
+      <label style="color: black;">Helpfulness:</label>
+      <input id="helpfulness" name="helpfulness" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+      <script type="javascript">$("#helpfulness").rating();</script>
     </div>
+
+    <label style="color: black;">Would you have a beer with your landlord?</label>
+
+    <img src="/images/empty-beer-icon.png" data-swap="/images/beer-icon.png" id="bg" style="width: 10%; height: 10%"/> </br>
+    <script>
+      $(function() {
+        $('#bg').click(function(){
+          var current_src = $(this).attr("src");
+          var swap_src = $(this).attr("data-swap");
+          $(this).attr("src", swap_src).attr("data-swap", current_src);
+          if($(this).attr("src") == "/images/beer-icon.png") {
+            $("#friendly").val(true);
+          }
+          else {
+            $("#friendly").val(false);
+          }
+        });
+      });
+    </script>
+    <input type="hidden" value="friendly" id="friendly" name="friendly"/>
+    <hr>
+    <div class="form-group">
+      <label style="color: black;">Comment:</label>
+        <textarea name="comment" rows="4" cols="30" class="form-control" ></textarea>
+    </div>
+  </form>
+
 </div>
