@@ -81,8 +81,6 @@ body {
   margin-top: 100px;
 }
 
-
-
 .login-form .panel {
   background-color: rgba(0,0,0,.5);
   border:none;
@@ -289,13 +287,46 @@ body {
 
 .close:hover { background: #00d9ff; }
 
+
 .col-address-title h1{
   text-align: left;
 }
 
 col-address-button {
-  float: right;
+  float: right;}
+
+.btn-link {color: #ffffff;
 }
 
+.btn-link:hover {
+	color: #000000;
+  background: none;
+  border: #FCFCFC solid;
+  border-radius: 25px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: 2px;
+  text-decoration: none;
+}
 
+.modal-title {
+	color: black;
+}
 
+.address-form2 .panel {
+	color: black;
+	border: none;
+}
+.modal-text {
+  background-color: rgba(0,0,0,.6);
+  margin-top: 50px;
+  border: #FCFCFC solid;
+  color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.btn-form {
+	background-color: #777777;
+	color: white;
+}

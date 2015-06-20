@@ -1,38 +1,29 @@
-		  <div class = "row row-new-address-form text-center">
-		  	<div class="address-form">
-    			<div class="panel panel-primary">
-      			<div class="panel-body">
-		  			<a href="#close" title="Close" class="close">X</a>
-		  			<h2>
-		  				<strong>New Address</strong>
-		  			</h2>
-						<form method="post" action="/landlords/<%=params[:id]%>/addresses">
+<div class="well">
+	<form method="post" action="/landlords/<%=params[:id]%>/addresses">
 
-						<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
-					
-						<div class="form-group">
-							<label>Unit Number:</label></br>
-							<input type="text" class="form-control" name="unit_number">
-						</div>
-						
-						<div class="form-group">
-							<label>Street Number:</label></br>
-							<input type="text" class="form-control" name="street_number">
-						</div>
+		<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
 
-						<div class="form-group">
-							<label>Street Name:</label></br>
-							<input type="text" class="form-control" name="street_name">
-						</div>
+		<div class="form-group">
+			<label style="color: black;">Unit Number:</label></br>
+			<input type="text" class="form-control" name="unit_number">
+		</div>
 
-						<div class="form-group">
-							<label>City:</label></br>
-							<input type="text" class="form-control" name="city">
-							<br/>
-						</div>
-					
-						<input type="submit" class="btn btn-default" value="Add Landlord Address">
-					</form>
-				</div>
-			</div>
+		<div class="form-group">
+			<label style="color: black;">Street Number:</label></br>
+			<input type="text" class="form-control" name="street_number">
+		</div>
+
+		<div class="form-group">
+			<label style="color: black;">Street Name:</label></br>
+			<input type="text" class="form-control" name="street_name">
+		</div>
+
+		<div class="form-group">
+			<label style="color: black;">City:</label></br>
+			<input type="text" class="form-control" name="city">
+			<br/>
+		</div>
+	</form>
+</div>
+
 		
