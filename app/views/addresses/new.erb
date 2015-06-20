@@ -1,28 +1,73 @@
-<h1>Here goes the new address form!</h1>
-
-<div>
-<h2><strong>New Landlord Address</strong></h2>
-	<form method="post" action="/landlords/<%=params[:id]%>/addresses">
-
-		<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
-		
-		Unit Number:</br>
-		<input type="text" name="unit_number">
-		<br/>
-		
-		Street Number:</br>
-		<input type="text" name="street_number">
-		<br/>
-		
-		Street Name:</br>
-		<input type="text" name="street_name">
-		<br/>
-		
-		City:</br>
-		<input type="text" name="city">
-		<br/><br/>
-	
-		<input type="submit" value="Add Landlord Address">
-
-	</form>
+<div class="title">
+  <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
 </div>
+
+<div class="landlord">
+
+  <div class="row total-ratings-row">
+    <div class = "col-sm-4 beer-image-column text-center">
+      <%if @landlord.friendly%>
+        <img class = "beer-image"src="/images/beer-icon.png">
+      <%else%>
+        <img class = "beer-image"src="/images/empty-beer-icon.png">
+      <%end%>
+    </div>
+
+    <div class = "rating-bar col-sm-8">
+      <p class= "rating-title">Total Rating:</p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+      </div>
+
+      <div class = "sub-rating">
+        <p class= "rating-title">Communication:</p>
+        <div class="progress progress-orange">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        </div>
+      </div>
+
+      <div class = "sub-rating">
+        <p class= "rating-title">Helpfulness:</p>
+        <div class="progress progress-orange">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        </div>
+      </div>
+
+      <div class = "sub-rating">
+        <p class= "rating-title">Reliability:</p>
+        <div class="progress progress-orange">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class = "row row-new-address-form text-center">
+  	<h2><strong>New Landlord Address</strong></h2>
+		<form method="post" action="/landlords/<%=params[:id]%>/addresses">
+
+			<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+			
+			Unit Number:</br>
+			<input type="text" name="unit_number">
+			<br/>
+			
+			Street Number:</br>
+			<input type="text" name="street_number">
+			<br/>
+			
+			Street Name:</br>
+			<input type="text" name="street_name">
+			<br/>
+			
+			City:</br>
+			<input type="text" name="city">
+			<br/><br/>
+		
+			<input type="submit" value="Add Landlord Address">
+		</form>
+	</div>
+</div>
+
