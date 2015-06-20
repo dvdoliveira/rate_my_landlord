@@ -150,6 +150,7 @@ body {
 .rating-title {
   float: left;
   margin-top: 4px;
+  font-size: 15px;
 }
 
 .progress {
