@@ -25,26 +25,36 @@
 		<br/><br/>
 
 		<p>Communication:</p>
-		<input id="communication" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+		<input id="communication" name="communication" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
 		<script type="javascript">$("#communication").rating();</script>
 		<p>Reliability:</p>
-		<input id="reliability" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+		<input id="reliability" name="reliability" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
 		<script type="javascript">$("#communication").rating();</script>
 		<p>Helpfulness:</p>
-		<input id="helpfulness" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+		<input id="helpfulness" name="helpfulness" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
 		<script type="javascript">$("#communication").rating();</script>
 
 		<p>Would you have a beer with your landlord?</p>
-		<a href="" title="Switch" class="menulink">switch me</a>
-		<img src="/images/empty-beer-icon.png" id="bg" style="width: 10%; height: 10%"/> </br>
+		
+		<img src="/images/empty-beer-icon.png" data-swap="/images/beer-icon.png" id="bg" style="width: 10%; height: 10%"/> </br>
 		<script>
 			$(function() {
- 				$('.menulink').click(function(){
-   			$("#bg").attr('src',"/images/beer-icon.png");
-   			return false;
+ 				$('#bg').click(function(){
+ 					var current_src = $(this).attr("src");
+ 					var swap_src = $(this).attr("data-swap");
+ 					$(this).attr("src", swap_src).attr("data-swap", current_src);
+ 					if($(this).attr("src") == "/images/beer-icon.png") {
+ 						$("#friendly").val(true);
+ 					}
+ 					else {
+ 						$("#friendly").val(false);
+ 					}
  				});
 			});
 		</script>
+		<input type="hidden" value="friendly" id="friendly" name="friendly"/>
+
+		<input type="text" class="form-control" id="comment"/>
 
 		<input type="submit" value="Add">
 	</form>

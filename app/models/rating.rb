@@ -9,7 +9,7 @@ class Rating < ActiveRecord::Base
 	validates :comment, length: { maximum: 800 }
 
 	after_save :update_landlord_average_rating
-	after_create :update_friendly_icon
+	after_save :update_friendly_icon
 
 	private
 
