@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619185919) do
+ActiveRecord::Schema.define(version: 20150620002758) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "unit_number"
@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(version: 20150619185919) do
     t.integer "user_id"
     t.string  "full_name"
     t.float   "average_rating"
-    t.boolean "friendly",       default: false
+    t.boolean "friendly",              default: false
+    t.float   "average_communication"
+    t.float   "average_reliability"
+    t.float   "average_helpfulness"
   end
 
   add_index "landlords", ["user_id"], name: "index_landlords_on_user_id"
@@ -39,9 +42,6 @@ ActiveRecord::Schema.define(version: 20150619185919) do
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "average_communication"
-    t.float    "average_reliability"
-    t.float    "average_helpfulness"
   end
 
   add_index "ratings", ["landlord_id"], name: "index_ratings_on_landlord_id"
