@@ -93,3 +93,6 @@ DEPENDENCIES
   sqlite3
   tux
   will_paginate
+
+BUNDLED WITH
+   1.10.2
