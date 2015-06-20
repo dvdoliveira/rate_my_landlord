@@ -85,7 +85,7 @@ end
 get '/landlords' do
 
   @search_results = []
-  if params[:name]
+  if params[:name] && !params[:name].empty?
 
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
@@ -102,7 +102,7 @@ get '/landlords' do
               FROM(#{subselect}) as landlords GROUP BY id ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
-  elsif params[:street_number]
+  elsif params[:street_number] && !params[:street_number].empty?
     address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name].capitalize, city: params[:city].capitalize)
 
     address_of_landlord.each do |address|
@@ -111,7 +111,7 @@ get '/landlords' do
       end
     end
     erb :'landlords/index'
-  elsif 
+  else
     @search_results = Landlord.all
     erb :'landlords/index'
   end
