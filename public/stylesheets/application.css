@@ -192,15 +192,10 @@ body {
   margin-right: 2px;
 }
 
-
 .beer-image-search {
   max-height: 200px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.landlord-search {
-
 }
 
 .landlord-name {
@@ -215,6 +210,11 @@ body {
   margin-bottom: auto;
 }
 
+.modal-dialog{
+  width: 650px; /* desired relative width */
+  margin-left:auto;
+  margin-right:auto; 
+}
 
 
 
