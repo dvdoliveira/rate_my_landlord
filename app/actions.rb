@@ -161,19 +161,23 @@ end
 
 # Create new rating and redirect user to landlord profile
 post '/landlords/:id/ratings' do
-  @rating = Rating.new(
-    landlord_id: params[:landlord_id],
-    user_id: current_user,
-    communication: params[:communication],
-    helpfulness: params[:helpfulness],
-    reliability: params[:reliability],
-    friendly: params[:friendly],
-    comment: params[:comment]
-    )
-  if @rating.save
-    redirect "landlords/#{params[:landlord_id]}"
+  if current_user
+    @rating = Rating.new(
+      landlord_id: params[:landlord_id],
+      user_id: current_user,
+      communication: params[:communication],
+      helpfulness: params[:helpfulness],
+      reliability: params[:reliability],
+      friendly: params[:friendly],
+      comment: params[:comment]
+      )
+    if @rating.save
+      redirect "landlords/#{params[:landlord_id]}"
+    else
+      erb :'/ratings/new'
+    end
   else
-    erb :'/ratings/new'
+    erb :'/session/new'
   end
 end
 
