@@ -135,7 +135,7 @@ end
 
 # Show form to create new rating
 get '/landlords/:id/ratings/new' do
-  landlord = Landlord.find(params[:id])
+  @landlord = Landlord.find(params[:id])
   @rating = Rating.new
   erb :'ratings/new'
 end

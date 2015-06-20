@@ -1,10 +1,45 @@
-<br>
-<br>
-<br>
 
-<!-- <input id="input-id" type="number" class="rating" min=0 max=5 step=0.5 data-size="lg" >
-<script type="javascript">$("#input-id").rating(size:'xs');</script> -->
+<div class="title">
+  <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
+</div>
+<div class="landlord">
+  <div class="row total-ratings-row">
+    <div class = "col-sm-4 beer-image-column text-center">
+      <%if @landlord.friendly%>
+        <img class = "beer-image"src="/images/beer-icon.png">
+      <%else%>
+        <img class = "beer-image"src="/images/empty-beer-icon.png">
+      <%end%>
+    </div>
+    <div class = "rating-bar col-sm-8">
+      <p class= "rating-title">Total Rating:</p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+      </div>
 
+      <div class = "sub-rating">
+        <p class= "rating-title">Communication:</p>
+        <div class="progress progress-orange">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        </div>
+      </div>
+
+      <div class = "sub-rating">
+        <p class= "rating-title">Helpfulness:</p>
+        <div class="progress progress-orange">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        </div>
+      </div>
+
+      <div class = "sub-rating">
+        <p class= "rating-title">Reliability:</p>
+        <div class="progress progress-orange">
+          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 <div class="login-form">
     <div class="panel panel-primary">
