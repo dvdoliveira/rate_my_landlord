@@ -119,53 +119,66 @@ end
 
 # Show form to create new landlord profile
 get '/landlords/new' do
-  erb :'/landlords/new'
+  if current_user
+    erb :'/landlords/new'
+  else
+    erb :'/session/new'
+  end
 end
 
 # Show landlord profile page
 get '/landlords/:id' do
   @landlord = Landlord.find(params[:id])
-  @rentals = Rental.where(landlord_id: params[:id])
-  @addresses = []
-  # Address.where(id: @rentals[:address_id])
   erb :'landlords/show'
 end
 
 # Create new landlord and redirect user to landlord profiles
 post '/landlords/' do
-  @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
+  if current_user
+    @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
 
-  @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+    @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
 
-  Rental.create(landlord: @landlord, address: @address)
+    Rental.create(landlord: @landlord, address: @address)
 
-  Rating.create(user: @current_user, landlord: @landlord, communication: params[:communication], helpfulness: params[:helpfulness], reliability: params[:reliability], friendly: params[:friendly], comment: params[:comment])
-  redirect "/landlords/#{@landlord.id}"
+    Rating.create(user: @current_user, landlord: @landlord, communication: params[:communication], helpfulness: params[:helpfulness], reliability: params[:reliability], friendly: params[:friendly], comment: params[:comment])
+    redirect "/landlords/#{@landlord.id}"
+  else
+    erb :'/session/new'
+  end
 end
 
 # Show form to create new rating
 get '/landlords/:id/ratings/new' do
-  @landlord = Landlord.find(params[:id])
-  @rating = Rating.new
-  erb :'ratings/new'
+  if current_user
+    @landlord = Landlord.find(params[:id])
+    @rating = Rating.new
+    erb :'ratings/new'
+  else
+    erb :'/session/new'
+  end
 end
 
 # Create new rating and redirect user to landlord profile
 post '/landlords/:id/ratings' do
-  @rating = Rating.new(
-    landlord_id: params[:landlord_id],
-    user_id: current_user[:id],
-    communication: params[:communication],
-    helpfulness: params[:helpfulness],
-    reliability: params[:reliability],
-    friendly: params[:friendly],
-    comment: params[:comment]
-    )
-  if @rating.save
-    redirect "landlords/#{params[:landlord_id]}"
-  else
-    erb :'/ratings/new'
-  end
+  # if current_user
+    @rating = Rating.new(
+      landlord_id: params[:landlord_id],
+      user_id: current_user[:id],
+      communication: params[:communication],
+      helpfulness: params[:helpfulness],
+      reliability: params[:reliability],
+      friendly: params[:friendly],
+      comment: params[:comment]
+      )
+    if @rating.save
+      redirect "landlords/#{params[:landlord_id]}"
+    else
+      erb :'/ratings/new'
+    end
+  # else
+  #   erb :'/session/new'
+  # end
 end
 
 # Show form to create new address
