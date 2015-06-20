@@ -16,28 +16,31 @@
     <div class = "rating-bar col-sm-8">
       <p class= "rating-title">Total Rating:</p>
       <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(@landlord.average_rating * 20)%>%"><h1><%= @landlord.average_rating %></h1></div>
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(@landlord.average_rating * 20)%>%"><h1><%= @landlord.average_rating.round(2) %></h1></div>
       </div>
 
       <div class = "sub-rating">
         <p class= "rating-title">Communication:</p>
         <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_communication * 20)%>%"><h1><%= @landlord.average_communication %></h1></div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_communication * 20)%>%"><h1><%= @landlord.average_communication.round(2) %></h1></div>
         </div>
       </div>
 
       <div class = "sub-rating">
         <p class= "rating-title">Helpfulness:</p>
         <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_helpfulness * 20)%>%"><h1><%= @landlord.average_helpfulness%></h1></div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_helpfulness * 20)%>%"><h1><%= @landlord.average_helpfulness.round(2)%></h1></div>
         </div>
       </div>
 
       <div class = "sub-rating">
         <p class= "rating-title">Reliability:</p>
         <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_reliability * 20)%>%"><h1><%= @landlord.average_reliability %></h1></div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_reliability * 20)%>%"><h1><%= @landlord.average_reliability.round(2) %></h1></div>
         </div>
+      </div>
+      <div class="sub-rating">
+      	<p style="float:right; color: rgb(150, 228, 212); font-size:18px"><%= @landlord.ratings.length%> Reviews </p>
       </div>
     </div>
   </div>
@@ -55,7 +58,6 @@
 	        <%= erb :"/addresses/new" %>
 	      </div>
 	      <div class="modal-footer">
-	      	<input type="submit" class="btn btn-default btn-form" value="Add Address" style="float: left;">
 	        <button type="button" class="btn btn-default btn-form" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
@@ -72,7 +74,7 @@
 	        <%= erb :"/ratings/new" %>
 	      </div>
 	      <div class="modal-footer">
-	      	<input type="submit" class="btn btn-default btn-form" value="Add Rating" style="float: left;">
+	      	
 	        <button type="button" class="btn btn-default btn-form" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>

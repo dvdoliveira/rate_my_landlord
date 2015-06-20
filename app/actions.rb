@@ -144,7 +144,6 @@ end
 # Show form to create new rating
 get '/landlords/:id/ratings/new' do
   @landlord = Landlord.find(params[:id])
-  @rating = Rating.new
   erb :'ratings/new'
 end
 
@@ -152,7 +151,7 @@ end
 post '/landlords/:id/ratings' do
   @rating = Rating.new(
     landlord_id: params[:landlord_id],
-    user_id: current_user[:id],
+    user_id: current_user,
     communication: params[:communication],
     helpfulness: params[:helpfulness],
     reliability: params[:reliability],
