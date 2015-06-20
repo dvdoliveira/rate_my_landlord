@@ -64,9 +64,9 @@ body {
 }
 
 .btn-details {
-  margin-left: 20px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-right: 15px;
 }
 
 .row {
@@ -137,7 +137,6 @@ body {
   text-align: center;
 }
 
-
 .landlord h3 {
   margin-left: 20px;
   margin-top: 20px;
@@ -153,7 +152,7 @@ body {
   margin-top: 4px;
 }
 
-.rating-bar .progress {
+.progress {
   margin-left: 120px;
   height: 28px;
 }
@@ -169,11 +168,10 @@ body {
 .beer-image {
   width: 200px;
   height: 200px;
-  margin-left: 20%; 
+  margin-left: auto; 
 }
 
 .beer-image-column {
-  width: ;
   margin-left: auto;
   margin-right: auto;
 }
@@ -182,7 +180,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 50%
-  border
 }
 
 .btn-address-form {
@@ -194,17 +191,21 @@ body {
   margin-right: 2px;
 }
 
-.address-new-button {
 
-}
-
-.landlord-name {
-  width: 100%;
+.beer-image-search {
+  max-height: 200px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.landlord-search {
 
+}
+
+.landlord-name {
+  margin-top: 0;
+  margin-left: 0;
+}
 
 
 
