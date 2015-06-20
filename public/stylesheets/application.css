@@ -289,6 +289,13 @@ body {
 
 .close:hover { background: #00d9ff; }
 
+.col-address-title h1{
+  text-align: left;
+}
+
+col-address-button {
+  float: right;
+}
 
 
 

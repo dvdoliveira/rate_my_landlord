@@ -43,43 +43,48 @@
   </div>
 
   <hr/>
-
-  <%@landlord.addresses.each do |address|%>
-    <%@full_address = (address.street_number.to_s + " " + address.street_name + " " + address.city)%>
-
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#mapModal"><%=@full_address%></button>
-
-    
-  <%end%>
-
-  <div id="mapModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" style="color:black;"><%=@full_address%></h4>
-          </div>
-          <div class="modal-body">
-            <iframe width="600" height="450" frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApGvPQVEWf6tQxHA1y4UQyY14Fq9KSEFk&q=<%= @full_address %>">
-            </iframe>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
+  
+  <div class="row">
+    <div class="col-sm-4 col-address-title">
+      <h1 style="margin-left:15px; margin-top:0px;">Addresses:</h1>
     </div>
 
-  <div class = "row address-list">
+    <div class="col-sm-4"></div>
 
-    <div class = "col-sm-12 address-new-button">
+    <div class="col-sm-4 col-address-button">
       <form method="get" action="/landlords/<%=params[:id]%>/addresses/new">
         <input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
         <input type="submit" value="Add Landlord Address" class="btn btn-address-form">
       </form>
     </div>
+  </div>
+
+  <%@landlord.addresses.each do |address|%>
+    <%full_address = (address.street_number.to_s + " " + address.street_name + ", " + address.city)%>
+
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#<%=address.id%>mapModal"><%=full_address%></button>
+
+    <div id="<%=address.id%>mapModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="color:black;"><%=full_address%></h4>
+          </div>
+          <div class="modal-body">
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApGvPQVEWf6tQxHA1y4UQyY14Fq9KSEFk&q=<%= full_address %>">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+
+  <hr/>
+
+  <div class = "row address-list">
 
     <div class = "col-sm-12 address-new-button">
       <form method="get" action="/landlords/<%=params[:id]%>/ratings/new">
