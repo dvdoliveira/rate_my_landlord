@@ -316,4 +316,7 @@ body {
   margin-right: 10%;
 }
 
-
+.btn-form {
+	background-color: #777777;
+	color: white;
+}
