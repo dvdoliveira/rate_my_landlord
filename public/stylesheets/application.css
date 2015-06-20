@@ -288,12 +288,16 @@ body {
 .close:hover { background: #00d9ff; }
 
 
-.col-address-title h1{
-  text-align: left;
+.row-address{
+  margin:0;
+  text-align: center;
 }
 
-col-address-button {
-  float: right;}
+.btn-add{
+  margin-right: 0px;
+  margin-top:0px;
+  text-align: center;
+}
 
 .btn-link {color: #ffffff;
 }
@@ -330,3 +334,29 @@ col-address-button {
 	background-color: #777777;
 	color: white;
 }
+
+.btn-address {
+  width: 30%;
+  min-width: 300px;
+}
+
+.address-buttons-list {
+  text-align: center;
+}
+
+.col-address-title {
+  text-align: left;
+}
+
+.col-address-button {
+  text-align: center;
+}
+
+.btn-add-rating {
+
+}
+
+
+
+
+
