@@ -1,30 +1,54 @@
 <h1>Here goes the new landlord profile form!</h1>
 
 <div>
-<h2><strong>New Landlord Address</strong></h2>
-	<form method="post" action="/landlords/">
+	<h2>
+		<strong>
+			New Landlord Address
+		</strong>
+	</h2>
 
+	<form method="post" action="/landlords/">
 		Landlord Name: </br>
 		<input type="text" name="full_name">
 		<br/>
-
 		Unit Number:</br>
 		<input type="text" name="unit_number">
-		<br/>
-		
+		<br/>		
 		Street Number:</br>
 		<input type="text" name="street_number">
 		<br/>
-		
 		Street Name:</br>
 		<input type="text" name="street_name">
 		<br/>
-		
 		City:</br>
 		<input type="text" name="city">
 		<br/><br/>
-	
-		<input type="submit" value="Add">
 
+		<p>Communication:</p>
+		<input id="communication" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+		<script type="javascript">$("#communication").rating();</script>
+		<p>Reliability:</p>
+		<input id="reliability" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+		<script type="javascript">$("#communication").rating();</script>
+		<p>Helpfulness:</p>
+		<input id="helpfulness" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
+		<script type="javascript">$("#communication").rating();</script>
+
+		<p>Would you have a beer with your landlord?</p>
+		<a href="" title="Switch" class="menulink">switch me</a>
+		<img src="/images/empty-beer-icon.png" id="bg" style="width: 10%; height: 10%"/> </br>
+		<script>
+			$(function() {
+ 				$('.menulink').click(function(){
+   			$("#bg").attr('src',"/images/beer-icon.png");
+   			return false;
+ 				});
+			});
+		</script>
+
+		<input type="submit" value="Add">
 	</form>
+
+
+
 </div>
