@@ -39,7 +39,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-          	<li><a href= "/landlords/new"><span class="glyphicon glyphicon-plus" aria-hidden:true></span></a></li>
+          	<li>
+          		<a href= "/landlords/new" title="" ><span class="glyphicon glyphicon-plus" aria-hidden:true rel=""></span></a>
+          		
+          	</li>
             <li><a href="/logout">Logout</a></li>
           <% else %>
             <li><a href="/session/new">Login</a></li>
