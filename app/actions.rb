@@ -83,8 +83,10 @@ end
 # Index of landlords
 
 get '/landlords' do
+
   @search_results = []
   if params[:name]
+
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
     query = "SELECT
@@ -92,14 +94,16 @@ get '/landlords' do
               user_id,
               full_name,
               average_rating,
+              average_communication,
+              average_reliability,
+              average_helpfulness,
               friendly,
               COUNT(*) as rank
-              FROM(#{subselect}) as landlords GROUP BY full_name ORDER BY rank DESC;"
+              FROM(#{subselect}) as landlords GROUP BY id ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
-
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   elsif params[:street_number]
-    address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+    address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name].capitalize, city: params[:city].capitalize)
 
     address_of_landlord.each do |address|
       address.landlords.each do |landlord|
@@ -127,8 +131,11 @@ end
 # Create new landlord and redirect user to landlord profiles
 post '/landlords/' do
   @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
+
   @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+
   Rental.create(landlord: @landlord, address: @address)
+
   Rating.create(user: @current_user, landlord: @landlord, communication: params[:communication], helpfulness: params[:helpfulness], reliability: params[:reliability], friendly: params[:friendly], comment: params[:comment])
   redirect "/landlords/#{@landlord.id}"
 end
