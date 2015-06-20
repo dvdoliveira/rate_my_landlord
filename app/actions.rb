@@ -183,13 +183,21 @@ end
 
 # Show form to create new address
 get '/landlords/:id/addresses/new' do
-  @landlord = Landlord.find(params[:id])
-  erb :'addresses/new'
+  if current_user
+    @landlord = Landlord.find(params[:id])
+    erb :'addresses/new'
+  else
+    erb :'/session/new'
+  end
 end
 
 # Create new address to a landlord and redirect user back to landlord profile
 post '/landlords/:id/addresses' do
-  @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
-  Rental.create(landlord_id: params[:landlord_id], address_id: @address[:id])
-  redirect "landlords/#{params[:landlord_id]}"
+  if current_user
+    @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
+    Rental.create(landlord_id: params[:landlord_id], address_id: @address[:id])
+    redirect "landlords/#{params[:landlord_id]}"
+  else
+    erb :'/session/new'
+  end  
 end
