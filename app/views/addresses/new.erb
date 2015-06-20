@@ -1,5 +1,6 @@
 <div>
 	<h2><strong>New Landlord Address</strong></h2>
+	
 	<form method="post" action="/landlords/<%=params[:id]%>/addresses">
 		<div class="title">
 		  <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
@@ -46,29 +47,37 @@
 		  <hr/>
 
 		  <div class = "row row-new-address-form text-center">
-		  	<h2><strong>New Landlord Address</strong></h2>
-				<form method="post" action="/landlords/<%=params[:id]%>/addresses">
+		  	<div class="login-form">
+    			<div class="panel panel-primary">
+      			<div class="panel-heading"></div>
+      			<div class="panel-body">
+		  			<h2>
+		  				<strong>New Landlord Address</strong>
+		  			</h2>
+						<form method="post" action="/landlords/<%=params[:id]%>/addresses">
 
-					<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
+						<input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
 					
-					Unit Number:</br>
-					<input type="text" name="unit_number">
-					<br/>
+						Unit Number:</br>
+						<input type="text" name="unit_number">
+						<br/>
 					
-					Street Number:</br>
-					<input type="text" name="street_number">
-					<br/>
+						Street Number:</br>
+						<input type="text" name="street_number">
+						<br/>
+						
+						Street Name:</br>
+						<input type="text" name="street_name">
+						<br/>
+						
+						City:</br>
+						<input type="text" name="city">
+						<br/><br/>
 					
-					Street Name:</br>
-					<input type="text" name="street_name">
-					<br/>
-					
-					City:</br>
-					<input type="text" name="city">
-					<br/><br/>
-				
-					<input type="submit" value="Add Landlord Address">
-		</form>
+						<input type="submit" value="Add Landlord Address">
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-
