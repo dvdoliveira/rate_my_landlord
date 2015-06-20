@@ -128,18 +128,34 @@ post '/landlords/' do
   @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
   @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
   Rental.create(landlord: @landlord, address: @address)
+  binding.pry
+  Rating.create(user: @current_user, landlord: @landlord, communication: params[:communication], helpfulness: params[:helpfulness], reliability: params[:reliability], friendly: params[:friendly], comment: params[:comment])
   redirect "/landlords/#{@landlord.id}"
-  #TODO
 end
 
 # Show form to create new rating
 get '/landlords/:id/ratings/new' do
+  landlord = Landlord.find(params[:id])
+  @rating = Rating.new
   erb :'ratings/new'
 end
 
-# Create new landlord and redirect user to landlord profile
+# Create new rating and redirect user to landlord profile
 post '/landlords/:id/ratings' do
-  #TODO
+  @rating = Rating.new(
+    landlord_id: params[:landlord_id],
+    user_id: current_user[:id],
+    communication: params[:communication],
+    helpfulness: params[:helpfulness],
+    reliability: params[:reliability],
+    friendly: params[:friendly],
+    comment: params[:comment]
+    )
+  if @rating.save
+    redirect "landlords/#{params[:landlord_id]}"
+  else
+    erb :'/ratings/new'
+  end
 end
 
 # Show form to create new address
