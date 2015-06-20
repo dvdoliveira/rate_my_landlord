@@ -25,6 +25,7 @@ helpers do
   def set_error(msg)
     session[:error] = {"Error" => [msg]}
   end
+
 end
 
 # Homepage (Search box)
