@@ -16,27 +16,27 @@
     <div class = "rating-bar col-sm-8">
       <p class= "rating-title">Total Rating:</p>
       <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(@landlord.average_rating * 20)%>%"><h1><%= @landlord.average_rating %></h1></div>
       </div>
 
       <div class = "sub-rating">
         <p class= "rating-title">Communication:</p>
         <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_communication * 20)%>%"><h1><%= @landlord.average_communication %></h1></div>
         </div>
       </div>
 
       <div class = "sub-rating">
         <p class= "rating-title">Helpfulness:</p>
         <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_helpfulness * 20)%>%"><h1><%= @landlord.average_helpfulness%></h1></div>
         </div>
       </div>
 
       <div class = "sub-rating">
         <p class= "rating-title">Reliability:</p>
         <div class="progress progress-orange">
-          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<%=(@landlord.average_rating * 0)%>" style="width: <%=(@landlord.average_rating * 20)%>%"> <%= @landlord.average_rating %></div>
+          <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(@landlord.average_reliability * 20)%>%"><h1><%= @landlord.average_reliability %></h1></div>
         </div>
       </div>
     </div>
@@ -63,4 +63,6 @@
 
   <hr/>
 </div>
+
+
 

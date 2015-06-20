@@ -12,6 +12,7 @@ gem 'puma'
 gem 'tux'
 gem 'bcrypt'
 gem 'rack-flash'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'pry'

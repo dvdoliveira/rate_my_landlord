@@ -150,6 +150,7 @@ body {
 .rating-title {
   float: left;
   margin-top: 4px;
+  font-size: 15px;
 }
 
 .progress {
@@ -205,6 +206,13 @@ body {
 .landlord-name {
   margin-top: 0;
   margin-left: 0;
+}
+
+.progress-bar h1{
+  font-size: 25px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 
