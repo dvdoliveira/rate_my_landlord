@@ -207,6 +207,13 @@ body {
   margin-left: 0;
 }
 
+.progress-bar h1{
+  font-size: 25px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 
 
 
