@@ -9,6 +9,7 @@ body {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
   border-bottom: 2px solid black;
 }
+
 .title {
   margin-top: 100px;
   margin-left: auto;
@@ -23,6 +24,12 @@ body {
 
 .title h1 {
   font-size: 100px;
+  text-align: center;
+}
+
+.title-name{
+  margin-bottom: 25px;
+  font-size: 80px;
   text-align: center;
 }
 
@@ -63,6 +70,20 @@ body {
   margin-right: auto;
 }
 
+.btn-new-landlord {
+  background: rgba(0,0,0,0.7);
+  min-width: 150px;
+}
+
+.btn-new-landlord-div{
+  text-align: center;
+  min-width: 150px;
+}
+
+.btn-new-landlord-div :hover{
+  background: rgba(0,0,0,0.3);
+}
+
 .btn-login :hover {
   background: rgba(255,255,255,0.4);
   color: white;
@@ -78,6 +99,30 @@ body {
   margin-top: 30px;
   margin-bottom: 30px;
   margin-right: 15px;
+}
+
+.btn-details :hover{
+  text-decoration: none;
+  border: #FCFCFC solid;
+  background: rgba(0,0,0,.5);
+}
+
+.col-address-button :hover {
+  text-decoration: none;
+  border: #FCFCFC solid;
+  background: rgba(0,0,0,.5);
+}
+
+.btn-address:hover {
+  text-decoration: none;
+  border: #FCFCFC solid;
+  background: rgba(0,0,0,.5);
+}
+
+.glyphicon:hover {
+  text-decoration: none;
+  border: none;
+  background: none;
 }
 
 .row {
@@ -293,7 +338,7 @@ body {
 	box-shadow: 1px 1px 3px #000;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover { background: rgba(0,0,0,0.3); }
 
 
 .row-address{
@@ -398,11 +443,11 @@ body {
   .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em; }
   .apple_pagination .disabled {
-    color: #aaaaaa; }
+    color: rgba(0,0,0,0.3); }
   .apple_pagination .current {
     font-style: normal;
     font-weight: bold;
-    background-color: #bebebe;
+    background-color: rgba(0,0,0,0.3);
     display: inline-block;
     width: 1.4em;
     height: 1.4em;
@@ -410,7 +455,7 @@ body {
     -moz-border-radius: 1em;
     -webkit-border-radius: 1em;
     border-radius: 1em;
-    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+    }
   .apple_pagination a {
     text-decoration: none;
     color: black; }
