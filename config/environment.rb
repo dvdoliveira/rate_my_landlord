@@ -11,6 +11,8 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 require 'pry'
 
 require 'bcrypt'
+require 'will_paginate'
+require 'will_paginate/active_record'
 
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 APP_NAME = APP_ROOT.basename.to_s
