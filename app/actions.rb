@@ -51,12 +51,9 @@ post '/users' do
 end
 
 # Index of landlords
-
 get '/landlords' do
-
   @search_results = []
   if params[:name] && !params[:name].empty?
-
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
     query = "SELECT
@@ -73,8 +70,11 @@ get '/landlords' do
     @search_results = Landlord.find_by_sql(query)
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   elsif params[:street_number] && !params[:street_number].empty?
-    address_of_landlord = Address.where(street_number: params[:street_number], street_name: params[:street_name].split.map(&:capitalize).join(' '), city: params[:city].split.map(&:capitalize).join(' '))
-
+    address_of_landlord = Address.where(
+      street_number: params[:street_number], 
+      street_name: params[:street_name].split.map(&:capitalize).join(' '), 
+      city: params[:city].split.map(&:capitalize).join(' ')
+    )
     address_of_landlord.each do |address|
       address.landlords.each do |landlord|
         @search_results << landlord
@@ -105,13 +105,29 @@ end
 # Create new landlord and redirect user to landlord profiles
 post '/landlords/' do
   if current_user
-    @landlord = Landlord.create(user: current_user, full_name: params[:full_name])
-
-    @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
-
-    Rental.create(landlord: @landlord, address: @address)
-
-    Rating.create(user: @current_user, landlord: @landlord, communication: params[:communication], helpfulness: params[:helpfulness], reliability: params[:reliability], friendly: params[:friendly], comment: params[:comment])
+    @landlord = Landlord.create(
+      user: current_user, 
+      full_name: params[:full_name]
+    )
+    @address = Address.create(
+      unit_number: params[:unit_number], 
+      street_number: params[:street_number], 
+      street_name: params[:street_name], 
+      city: params[:city]
+    )
+    Rental.create(
+      landlord: @landlord, 
+      address: @address
+    )
+    Rating.create(
+      user: @current_user, 
+      landlord: @landlord, 
+      communication: params[:communication], 
+      helpfulness: params[:helpfulness], 
+      reliability: params[:reliability], 
+      friendly: params[:friendly], 
+      comment: params[:comment]
+    )
     redirect "/landlords/#{@landlord.id}"
   else
     erb :'/session/new'
@@ -140,7 +156,7 @@ post '/landlords/:id/ratings' do
       reliability: params[:reliability],
       friendly: params[:friendly],
       comment: params[:comment]
-      )
+    )
     if @rating.save
       redirect "landlords/#{params[:landlord_id]}"
     else
@@ -164,8 +180,16 @@ end
 # Create new address to a landlord and redirect user back to landlord profile
 post '/landlords/:id/addresses' do
   if current_user
-    @address = Address.create(unit_number: params[:unit_number], street_number: params[:street_number], street_name: params[:street_name], city: params[:city])
-    Rental.create(landlord_id: params[:landlord_id], address_id: @address[:id])
+    @address = Address.create(
+      unit_number: params[:unit_number], 
+      street_number: params[:street_number], 
+      street_name: params[:street_name], 
+      city: params[:city]
+    )
+    Rental.create(
+      landlord_id: params[:landlord_id], 
+      address_id: @address[:id]
+    )
     redirect "landlords/#{params[:landlord_id]}"
   else
     erb :'/session/new'

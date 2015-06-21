@@ -105,12 +105,10 @@
 
   <hr/>
 
-
   <div class="row row-address">
     <div class="col-sm-4 col-address-title">
       <h1 style="margin-left:15px; margin-top:0px;">Comments:</h1>
-    </div>
-    
+    </div>    
   </div>
 
   <div class="container">
@@ -123,9 +121,7 @@
           <div class="panel-body comment-panel-body" style="color:black;">
             <div class = "col-sm-6 comment">
               <p><%=comment%></p>
-            </div>
-
-            
+            </div>          
 
             <div class = "rating-bar col-sm-6">
               <p class= "rating-title">Total Rating:</p>
@@ -152,11 +148,10 @@
                 <div class="progress progress-orange">
                     <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.reliability * 20)%>%"><h1><%= rating.reliability.round(2) %></h1></div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
-  </div>
-
       <%end%>
     <%end%>
   </div>
