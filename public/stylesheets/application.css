@@ -1,5 +1,7 @@
 body {
   background: url(http://www.hdwallpapersinn.com/wp-content/uploads/2014/10/gradient-abstract-hd-wallpaper-2560x1600-9694.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "futura", sans-serif;
 }
 
