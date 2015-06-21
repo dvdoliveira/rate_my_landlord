@@ -109,35 +109,54 @@ end
 # Create new landlord and redirect user to landlord profiles
 post '/landlords/' do
   if current_user
-    @landlord = Landlord.create(
-      user: current_user, 
-      full_name: params[:full_name]
-    )
-    @address = Address.create(
-      unit_number: params[:unit_number], 
+  	check_landlord = Landlord.where(full_name: params[:full_name])
+  	check_address = Address.where(unit_number: params[:unit_number], 
       street_number: params[:street_number], 
       street_name: params[:street_name], 
-      city: params[:city]
-    )
-    Rental.create(
-      landlord: @landlord, 
-      address: @address
-    )
-    @rating = Rating.new(
-      user: @current_user, 
-      landlord: @landlord, 
-      communication: params[:communication], 
-      helpfulness: params[:helpfulness], 
-      reliability: params[:reliability], 
-      friendly: params[:friendly], 
-      comment: params[:comment]
-    )
-    if @rating.save
-    	redirect "/landlords/#{@landlord.id}"
-    else
-			set_error("Your comment was too long! Try again!")
-      erb :'/landlords/new'
-    end
+      city: params[:city])
+
+  	match = []
+  	check_landlord.each do |landlord|
+  		check_address.each do |address|
+  			match << (address.landlords.include? landlord)
+  		end 
+  	end
+
+  	if !match.include? true
+
+	    @landlord = Landlord.create(
+	      user: current_user, 
+	      full_name: params[:full_name]
+	    )
+	    @address = Address.create(
+	      unit_number: params[:unit_number], 
+	      street_number: params[:street_number], 
+	      street_name: params[:street_name], 
+	      city: params[:city]
+	    )
+	    Rental.create(
+	      landlord: @landlord, 
+	      address: @address
+	    )
+	    @rating = Rating.new(
+	      user: @current_user, 
+	      landlord: @landlord, 
+	      communication: params[:communication], 
+	      helpfulness: params[:helpfulness], 
+	      reliability: params[:reliability], 
+	      friendly: params[:friendly], 
+	      comment: params[:comment]
+	    )
+	    if @rating.save
+	    	redirect "/landlords/#{@landlord.id}"
+	    else
+				set_error("Your comment was too long! Try again!")
+	      erb :'/landlords/new'
+	    end
+	  else
+	  	set_error("Landlord and address already exists.")
+	  	redirect "/landlords/#{check_landlord.first.id}"
+	  end
 
   else
     erb :'/session/new'

@@ -438,3 +438,13 @@ a[data-s]:hover:after {
 .beer:hover {
   content: url('/images/beer-icon.png');
 }
+
+.add-orange-btn {
+	color: rgb(240, 173, 78);
+	border-color: rgb(240, 173, 78);
+}
+
+.add-black-btn {
+	color: #000000;
+	border-color: #000000;
+}

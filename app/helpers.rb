@@ -40,4 +40,14 @@ helpers do
       return ""
     end
   end
+
+  def display_error_landlord_exists
+    error = session[:error]
+    session[:error] = nil
+    if error
+      return erb :'errors/error_display_landlord_exists', locals: {errors: error}
+    else
+      return ""
+    end
+  end
 end

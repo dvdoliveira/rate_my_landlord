@@ -1,3 +1,4 @@
+<%=display_error_landlord_exists%>
 <div class="title">
   <h1><span class="glyphicon glyphicon-user"></span> <%=@landlord.full_name%></h1> 
 </div>
@@ -8,7 +9,7 @@
       <div class="col-sm-4 col-address-title"></div>
       <div class="col-sm-4"></div>
       <div class="col-sm-4 col-address-button">
-        <button type="button" class="btn btn-info btn-lg btn-add" data-toggle="modal" data-target="#ratingModal"><span class="glyphicon glyphicon-plus"></span>   Add Rating</button>
+        <button type="button" class="btn btn-info btn-lg btn-add add-black-btn" data-toggle="modal" data-target="#ratingModal"><span class="glyphicon glyphicon-plus add-black-btn"></span>   Add Rating</button>
       </div>
     </div>
   </div>
@@ -54,7 +55,11 @@
         </div>
       </div>
       <div class="sub-rating">
+      <% if @landlord.ratings.length == 1 %>
+       	<p style="float:right; color: rgb(150, 228, 212); font-size:18px"><%= @landlord.ratings.length%> Reviews </p>
+      <% else %>
       	<p style="float:right; color: rgb(150, 228, 212); font-size:18px"><%= @landlord.ratings.length%> Reviews </p>
+      <% end %>
       </div>
     </div>
   </div>
@@ -68,7 +73,7 @@
     <div class="col-sm-4"></div>
     <% if current_user %>
       <div class="col-sm-4 col-address-button">
-        <button type="button" class="btn btn-info btn-lg btn-add" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>   Add Address</button>
+        <button type="button" class="btn btn-info btn-lg btn-add add-orange-btn" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus add-orange-btn"></span>   Add Address</button>
       </div>
     <% end %>
   </div>
