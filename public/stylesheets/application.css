@@ -1,12 +1,13 @@
 body {
   background: url(http://www.hdwallpapersinn.com/wp-content/uploads/2014/10/gradient-abstract-hd-wallpaper-2560x1600-9694.jpg);
+  font-family: "futura", sans-serif;
 }
 
 .title {
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;
-  font-family: "helvetica", sans-serif;
+  font-family: "futura", sans-serif;
   text-shadow: 0 2px 3px rgba(0,0,0,.5);
 }
 
@@ -130,20 +131,17 @@ body {
   border: none;
 }
 
-.landlord-holder {
-  background-color: rgba(51,204,255,0.4);
-  border-radius: 15px;
-  margin: 10%;
-  border: #FCFCFC solid;
-}
-
 .landlord {
   background-color: rgba(0,0,0,.6);
-  margin-top: 50px;
   border: #FCFCFC solid;
   color: white;
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 10%;
+}
+
+.landlord-search {
+  margin-bottom: 2%;
 }
 
 .no-results {
@@ -297,6 +295,7 @@ body {
   margin-right: 0px;
   margin-top:0px;
   text-align: center;
+  width: 175px;
 }
 
 .btn-link {color: #ffffff;
@@ -349,14 +348,22 @@ body {
 }
 
 .col-address-button {
-  text-align: center;
+  text-align: right;
 }
 
-.btn-add-rating {
-
+.row-add-rating {
+  margin-top: ;
 }
 
+.landlord-invisible {
+  background-color: none;
+  border:;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 0;
+}
 
-
-
+.comment-panel {
+ width: 70%;
+}
 
