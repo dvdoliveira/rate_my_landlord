@@ -31,4 +31,13 @@ helpers do
     session[:error] = {"Error" => [msg]}
   end
 
+  def display_error_comment
+    error = session[:error]
+    session[:error] = nil
+    if error
+      return erb :'errors/error_display_comment', locals: {errors: error}
+    else
+      return ""
+    end
+  end
 end

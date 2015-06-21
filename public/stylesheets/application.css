@@ -480,3 +480,6 @@ a[data-s]:hover:after {
   box-shadow:-1px 5px 15px rgba(0,0,0,0.6);
 }
 
+.beer:hover {
+  content: url('/images/beer-icon.png');
+}

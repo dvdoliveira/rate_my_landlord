@@ -1,9 +1,9 @@
 <div class="well">
+	<%= display_error_comment %>
   <form method="post" action="/landlords/<%= params[:id]%>/ratings">
     <input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
     <!-- Load partial -->
     <%= erb :'/ratings/_form_partial' %>
-
     <input type="submit" class="btn btn-default btn-form" value="Add Rating" style="float: left;"> </br>
   </form>
 </div>
