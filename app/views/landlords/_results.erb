@@ -1,4 +1,5 @@
 <%if @search_results %>
+  
   <% @search_results.each do |landlord|%>
     <div class="landlord landlord-search">
       <div class="row total-ratings-row search-row">
@@ -7,8 +8,12 @@
           <h1 class="landlord-name"><%=landlord.full_name%></h1>
           
           <div class = "btn-details">
-            <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info btn-block" role="button"> More Details</a>
+            <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info btn-block" role="button" style ="margin-bottom:1px;"> More Details</a>
           </div>
+
+          <% if landlord.created_at? %>
+            <p style="color: rgb(150, 228, 212); font-size:14px">Added on: <%= landlord.created_at.strftime("%D")%></p>
+          <% end %> 
           
           <div class="landlord-name" style="width: 50%; margin: 0 auto;">
           <% if landlord.ratings.length == 1 %>
