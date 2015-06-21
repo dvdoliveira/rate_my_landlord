@@ -164,6 +164,7 @@ post '/landlords/:id/ratings' do
     if @rating.save
       redirect "landlords/#{params[:landlord_id]}"
     else
+    	set_error("Your comment was too long! Try again!")
       erb :'/ratings/new'
     end
   else
