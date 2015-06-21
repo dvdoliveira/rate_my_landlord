@@ -1,6 +1,7 @@
 <div class="title">
   <h1><span class="glyphicon glyphicon-search"></span>  Search</h1> 
 </div>
+
 <%if @search_results %>
 	<%@search_results.each do |landlord|%>
 		<div class="landlord landlord-search">
@@ -8,15 +9,15 @@
 
 		    <div class = "col-sm-3 text-center">
 		    	<h1 class="landlord-name"><%=landlord.full_name%></h1>
+		    	
 		      <div class = "btn-details">
 	    			<a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info btn-block" role="button"> More Details</a>
 	  			</div>
+
 	  			<div class="sub-rating">
       			<p style="float:left; color: rgb(150, 228, 212); font-size:18px"><%= landlord.ratings.length%> Reviews </p>
       		</div>
 		    </div>
-
-
 
 		    <div class = "col-sm-7">
 		      <p class= "rating-title">Total Rating:</p>
