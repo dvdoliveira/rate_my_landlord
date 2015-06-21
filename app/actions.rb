@@ -69,7 +69,7 @@ get '/landlords' do
               FROM(#{subselect}) as landlords GROUP BY id ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
-  elsif params[:street_number] && !params[:street_number].empty?
+  else params[:street_number] && !params[:street_number].empty?
     address_of_landlord = Address.where(
       street_number: params[:street_number], 
       street_name: params[:street_name].split.map(&:capitalize).join(' '), 
@@ -81,10 +81,14 @@ get '/landlords' do
       end
     end
     erb :'landlords/index'
-  else
-    @search_results = Landlord.all
-    erb :'landlords/index'
+  # else
+
   end
+end
+
+get '/landlords/browse' do
+  @search_results = Landlord.paginate(:page => params[:page], :per_page => 5)
+  erb :'landlords/browse'
 end
 
 # Show form to create new landlord profile

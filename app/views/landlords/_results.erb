@@ -1,0 +1,70 @@
+<%if @search_results %>
+  <% @search_results.each do |landlord|%>
+    <div class="landlord landlord-search">
+      <div class="row total-ratings-row search-row">
+
+        <div class = "col-sm-3 text-center">
+          <h1 class="landlord-name"><%=landlord.full_name%></h1>
+          
+          <div class = "btn-details">
+            <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info btn-block" role="button"> More Details</a>
+          </div>
+          
+          <div class="landlord-name" style="width: 50%; margin: 0 auto;">
+          <% if landlord.ratings.length == 1 %>
+            <p style="float:left; color: rgb(150, 228, 212); font-size:18px"><%= landlord.ratings.length%> Review </p>
+          <% else %>
+            <p style="float:left; color: rgb(150, 228, 212); font-size:18px"><%= landlord.ratings.length%> Reviews </p>
+          <% end %>
+          </div>
+        </div>
+        <div class = "col-sm-7">
+          <p class= "rating-title">Total Rating:</p>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(landlord.average_rating * 20)%>%"><h1><%= landlord.average_rating.round(2) %></h1></div>
+          </div>
+
+          <div class = "sub-rating">
+            <p class= "rating-title">Communication:</p>
+            <div class="progress progress-orange">
+              <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(landlord.average_communication * 20)%>%"> <h1><%= landlord.average_communication.round(2) %></h1></div>
+            </div>
+          </div>
+
+          <div class = "sub-rating">
+            <p class= "rating-title">Helpfulness:</p>
+            <div class="progress progress-orange">
+              <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(landlord.average_helpfulness * 20)%>%"><h1><%= landlord.average_helpfulness.round(2) %></h1></div>
+            </div>
+          </div>
+
+          <div class = "sub-rating">
+            <p class= "rating-title">Reliability:</p>
+            <div class="progress progress-orange">
+              <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(landlord.average_reliability * 20)%>%"><h1><%= landlord.average_reliability.round(2) %></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class = "col-sm-2">
+          <%if landlord.friendly%>
+            <img class = "beer-image-search img-responsive"src="/images/beer-icon.png">
+          <%else%>
+            <img class = "beer-image-search img-responsive"src="/images/empty-beer-icon.png">
+          <%end%>
+        </div>
+      </div>
+    </div>
+  <%end%> 
+
+  <div class="apple_pagination">
+    <% if @search_results.is_a?(ActiveRecord::Relation) %>
+      <%= will_paginate @search_results, :container => false %>
+    <% end %>
+  </div>
+<%else%>
+  <%if @search_results && @search_results.empty?%>
+    <p>No results found!</p>
+  <%end%> 
+<%end%>
