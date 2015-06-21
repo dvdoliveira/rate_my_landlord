@@ -87,13 +87,10 @@
       <div id="<%=address.id%>mapModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title" style="color:black;"><%=full_address%></h4>
-            </div>
+          <div class="modal-content" >
             <div class="modal-body">
-              <iframe width="600" height="450" frameborder="0" style="border:0"
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <iframe width="580" height="470" frameborder="0" style="border:0; margin:-10px;"
               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApGvPQVEWf6tQxHA1y4UQyY14Fq9KSEFk&q=<%= (address.street_number.to_s + " " + address.street_name + ", " + address.city) %>">
               </iframe>
             </div>
@@ -124,6 +121,7 @@
             </div>          
 
             <div class = "rating-bar col-sm-6">
+
               <p class= "rating-title">Total Rating:</p>
               <div class="progress">
                 <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(user_total_avg * 20)%>%"><h1><%= user_total_avg.round(2) %></h1></div>

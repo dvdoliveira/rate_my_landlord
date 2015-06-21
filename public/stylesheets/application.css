@@ -71,7 +71,7 @@ body {
 }
 
 .btn-new-landlord {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.4);
   min-width: 150px;
 }
 
@@ -81,7 +81,10 @@ body {
 }
 
 .btn-new-landlord-div :hover{
-  background: rgba(0,0,0,0.3);
+  color: white;
+  border: #FCFCFC solid;
+  background: rgba(0,0,0,.7);
+  text-decoration: none;
 }
 
 .btn-login :hover {
@@ -94,6 +97,8 @@ body {
   background: rgba(0,0,0,.5);
   text-decoration: none;
 }
+
+
 
 .btn-details {
   margin-top: 30px;
@@ -281,7 +286,7 @@ body {
 }
 
 .modal-dialog{
-  width: 650px; /* desired relative width */
+  /* desired relative width */
   margin-left:auto;
   margin-right:auto; 
 }
@@ -418,7 +423,14 @@ body {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
-  background: rgba(230,230,230,0.8);
+  background: rgba(255,255,255,0.5);
+  border-radius: 50px;
+}
+
+.comment-panel-body .rating-bar {
+  background: rgba(230,230,230,1);
+  padding: 15px;
+  border-radius: 25px;
 }
 
 .container {
