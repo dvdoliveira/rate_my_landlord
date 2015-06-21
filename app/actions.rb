@@ -123,7 +123,7 @@ post '/landlords/' do
       landlord: @landlord, 
       address: @address
     )
-    Rating.create(
+    @rating = Rating.new(
       user: @current_user, 
       landlord: @landlord, 
       communication: params[:communication], 
@@ -132,7 +132,13 @@ post '/landlords/' do
       friendly: params[:friendly], 
       comment: params[:comment]
     )
-    redirect "/landlords/#{@landlord.id}"
+    if @rating.save
+    	redirect "/landlords/#{@landlord.id}"
+    else
+			set_error("Your comment was too long! Try again!")
+      erb :'/landlords/new'
+    end
+
   else
     erb :'/session/new'
   end
