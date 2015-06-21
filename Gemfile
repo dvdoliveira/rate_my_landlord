@@ -11,6 +11,7 @@ gem 'sinatra-activerecord'
 gem 'puma'
 gem 'tux'
 gem 'bcrypt'
+gem 'rack'
 gem 'rack-flash'
 gem 'will_paginate'
 

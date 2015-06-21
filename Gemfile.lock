@@ -84,6 +84,7 @@ DEPENDENCIES
   bcrypt
   pry
   puma
+  rack
   rack-flash
   rake
   shotgun
@@ -93,6 +94,3 @@ DEPENDENCIES
   sqlite3
   tux
   will_paginate
-
-BUNDLED WITH
-   1.10.2

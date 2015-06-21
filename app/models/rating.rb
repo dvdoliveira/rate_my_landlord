@@ -12,9 +12,7 @@ class Rating < ActiveRecord::Base
 	after_save :update_friendly_icon
 
 	private
-
 	def update_landlord_average_rating
-		
 		all_landlord_ratings = Rating.where(landlord_id: landlord_id)
 		num_landlord_ratings = all_landlord_ratings.length
 		landlord.average_communication = all_landlord_ratings.sum(:communication).to_f / num_landlord_ratings

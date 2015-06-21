@@ -35,12 +35,12 @@
       </div>
       <div class = "collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a href="/landlords">Browse</a></li>
+            <li><a href="/landlords/browse">Browse</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
           	<li>
-          		<a href= "/landlords/new" title="" ><span class="glyphicon glyphicon-plus" aria-hidden:true rel=""></span></a>
+          		<a href= "/landlords/new" data-s="Add new landlord!"><span class="glyphicon glyphicon-plus" aria-hidden:true rel=""></span></a>
           	</li>
             <li><a href="/logout">Logout</a></li>
           <% else %>
