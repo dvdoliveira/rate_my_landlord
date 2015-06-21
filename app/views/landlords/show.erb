@@ -109,23 +109,53 @@
     <div class="col-sm-4 col-address-title">
       <h1 style="margin-left:15px; margin-top:0px;">Comments:</h1>
     </div>
-    <div class="col-sm-12 col-address-title">
+    
   </div>
 
   <div class="container">
     <%@landlord.ratings.each do |rating|%>
       <%if rating.comment?%>
         <%comment = rating.comment%>
-        <div class="row row-comments">
-          <div class="col-sm-8">
-            <div class="panel panel-default comment-panel">
-              <div class="panel-heading comment-panel-heading">
-              </div>
-              <div class="panel-body comment-panel-body" style="color:black;"><%=comment%></div>
-              </div>
+        <%user_total_avg = (rating.communication + rating.helpfulness + rating.reliability)/3%>
+
+        <div class="panel panel-default comment-panel">
+          <div class="panel-body comment-panel-body" style="color:black;">
+            <div class = "col-sm-6 comment">
+              <p><%=comment%></p>
             </div>
-          <div class="col-sm-2"></div>
+
+            
+
+            <div class = "rating-bar col-sm-6">
+              <p class= "rating-title">Total Rating:</p>
+              <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(user_total_avg * 20)%>%"><h1><%= user_total_avg.round(2) %></h1></div>
+              </div>
+
+              <div class = "sub-rating">
+                <p class= "rating-title">Communication:</p>
+                <div class="progress progress-orange">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.communication * 20)%>%"><h1><%= rating.communication.round(2) %></h1></div>
+                </div>
+              </div>
+
+              <div class = "sub-rating">
+                <p class= "rating-title">Helpfulness:</p>
+                <div class="progress progress-orange">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.helpfulness * 20)%>%"><h1><%= rating.helpfulness.round(2)%></h1></div>
+                </div>
+              </div>
+
+              <div class = "sub-rating">
+                <p class= "rating-title">Reliability:</p>
+                <div class="progress progress-orange">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.reliability * 20)%>%"><h1><%= rating.reliability.round(2) %></h1></div>
+                </div>
+            </div>
+          </div>
         </div>
+  </div>
+
       <%end%>
     <%end%>
   </div>

@@ -15,9 +15,15 @@
 	  			</div>
 
 	  			<div class="sub-rating">
-      			<p style="float:left; color: rgb(150, 228, 212); font-size:18px"><%= landlord.ratings.length%> Reviews </p>
-      		</div>
-		    </div>
+	  				<div class="landlord-name" style="width: 50%; margin: 0 auto;">
+	  					<% if landlord.ratings.length == 1 %>
+	  			  		<p style="float:left; color: rgb(150, 228, 212); font-size:18px"><%= landlord.ratings.length%> Review </p>
+	  					<% else %>
+      					<p style="float:left; color: rgb(150, 228, 212); font-size:18px"><%= landlord.ratings.length%> Reviews </p>
+      				<% end %>
+      			</div>
+		   	 	</div>
+		   	</div>
 
 		    <div class = "col-sm-7">
 		      <p class= "rating-title">Total Rating:</p>
@@ -46,7 +52,6 @@
 		          </div>
 		        </div>
 		      </div>
-
 		    </div>
 
 		  
