@@ -65,6 +65,7 @@ get '/landlords' do
               average_reliability,
               average_helpfulness,
               friendly,
+              created_at,
               COUNT(*) as rank
               FROM(#{subselect}) as landlords GROUP BY id ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)

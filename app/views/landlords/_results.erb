@@ -10,8 +10,7 @@
           <div class = "btn-details">
             <a href="/landlords/<%= landlord.id %>" class="btn-lg btn-info btn-block" role="button" style ="margin-bottom:1px;"> More Details</a>
           </div>
-
-          <% if landlord.created_at? %>
+          <% if landlord.created_at %>
             <p style="color: rgb(150, 228, 212); font-size:14px">Added on: <%= landlord.created_at.strftime("%D")%></p>
           <% end %> 
           
