@@ -75,7 +75,7 @@
 
   <div class="address-buttons-list">
     <%@landlord.addresses.each do |address|%>
-      <%full_address = (address.street_number.to_s + " " + address.street_name + ", " + address.city)%>
+      <%full_address = (address.street_number.to_s + " " + address.street_name.split.map(&:capitalize).join(' ') + ", " + address.city.capitalize)%>
 
       <button type="button" class="btn btn-info btn-lg btn-address" data-toggle="modal" data-target="#<%=address.id%>mapModal"><%=full_address%></button>
 
