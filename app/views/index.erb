@@ -11,7 +11,7 @@
         <form method="get" action="/landlords">
           <div class="form-group">
             <label for="">Name:</label>
-            <input type="text" class="form-control" id="" name="name">
+            <input type="text" class="form-control" id="" name="name" required>
           </div>
           <div class="form-group btn-login">
             <button type="submit" class="btn btn-submit">Search</button>
@@ -30,17 +30,17 @@
         <form method="get" action="/landlords">
           <div class="form-group">
             <label for="">Street Number:</label>
-            <input type="text" class="form-control" id="" name="street_number">
+            <input type="text" class="form-control" id="" name="street_number" maxlength="8">
           </div>
 
           <div class="form-group">
             <label for="">Street Name:</label>
-              <input type="text" class="form-control" id="" name="street_name">
+              <input type="text" class="form-control" id="" name="street_name" maxlength="30">
           </div>
 
           <div class="form-group">
             <label for="">City:</label>
-              <input type="text" class="form-control" id="" name="city">
+              <input type="text" class="form-control" id="" name="city" maxlength="30" required>
           </div>
 
           <div class="form-group btn-login">
