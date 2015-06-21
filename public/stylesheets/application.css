@@ -238,7 +238,7 @@ body {
 }
 
 .sub-rating {
-  margin-left: 20%;
+  margin-left: 0%;
 }
 
 .beer-image {
@@ -394,11 +394,6 @@ body {
 	color: white;
 }
 
-.btn-address {
-  width: 30%;
-  min-width: 300px;
-}
-
 .address-buttons-list {
   text-align: center;
 }
@@ -428,9 +423,7 @@ body {
 }
 
 .comment-panel-body .rating-bar {
-  background: rgba(230,230,230,1);
   padding: 15px;
-  border-radius: 25px;
 }
 
 .container {
@@ -439,11 +432,14 @@ body {
 }
 
 .container .comment {
-  margin-top: auto;
+  background: rgba(230,230,230,1);
+  margin-top: 15px;
   margin-bottom: auto;
-  height: 100%;
-  text-align: center;
+  min-height: 170px;
+  text-align: left;
   vertical-align: middle;
+  padding: 15px;
+  border-radius: 25px;
 }
 
 /*Pagination*/
