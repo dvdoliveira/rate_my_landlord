@@ -75,7 +75,11 @@
 
   <div class="address-buttons-list">
     <%@landlord.addresses.each do |address|%>
-      <%full_address = (address.street_number.to_s + " " + address.street_name + ", " + address.city)%>
+      <%if address.unit_number?%>
+        <%full_address = ("#" + address.unit_number.to_s + ", " + address.street_number.to_s + " " + address.street_name + ", " + address.city)%>
+      <%else%>
+        <%full_address = (address.street_number.to_s + " " + address.street_name + ", " + address.city)%>
+      <%end%>
 
       <button type="button" class="btn btn-info btn-lg btn-address" data-toggle="modal" data-target="#<%=address.id%>mapModal"><%=full_address%></button>
 
@@ -89,7 +93,7 @@
             </div>
             <div class="modal-body">
               <iframe width="600" height="450" frameborder="0" style="border:0"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApGvPQVEWf6tQxHA1y4UQyY14Fq9KSEFk&q=<%= full_address %>">
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyApGvPQVEWf6tQxHA1y4UQyY14Fq9KSEFk&q=<%= (address.street_number.to_s + " " + address.street_name + ", " + address.city) %>">
               </iframe>
             </div>
           </div>
@@ -105,76 +109,55 @@
     <div class="col-sm-4 col-address-title">
       <h1 style="margin-left:15px; margin-top:0px;">Comments:</h1>
     </div>
+    
   </div>
 
-  	<div id="myModal" class="modal fade" role="dialog">
-  	  <div class="modal-dialog">
-
-
-  	    <div class="modal-content">
-  	   
-  	      <div class="modal-body">
-  	        <%= erb :"/addresses/new" %>
-  	      </div>
-  	      <div class="modal-footer">
-  	        <button type="button" class="btn btn-default btn-form" data-dismiss="modal">Close</button>
-  	      </div>
-  	    </div>
-  	  </div>
-  	</div>
-
-  	<div id="ratingModal" class="modal fade" role="dialog">
-  	  <div class="modal-dialog">
-
-  	    <div class="modal-content">
-  	      <div class="modal-body">
-  	        <%= erb :"/ratings/new" %>
-  	      </div>
-  	      <div class="modal-footer">
-  	        <button type="button" class="btn btn-default btn-form" data-dismiss="modal">Close</button>
-  	      </div>
-  	    </div>
-  	  </div>
-  	</div>
   <div class="container">
     <%@landlord.ratings.each do |rating|%>
       <%if rating.comment?%>
         <%comment = rating.comment%>
+        <%user_total_avg = (rating.communication + rating.helpfulness + rating.reliability)/3%>
+
         <div class="panel panel-default comment-panel">
-          <div class="panel-heading comment-panel-heading">Panel Header</div>
-          <div class="panel-body comment-panel-body" style="color:black;"><%=comment%></div>
+          <div class="panel-body comment-panel-body" style="color:black;">
+            <div class = "col-sm-6 comment">
+              <p><%=comment%></p>
+            </div>
+
+            
+
+            <div class = "rating-bar col-sm-6">
+              <p class= "rating-title">Total Rating:</p>
+              <div class="progress">
+                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: <%=(user_total_avg * 20)%>%"><h1><%= user_total_avg.round(2) %></h1></div>
+              </div>
+
+              <div class = "sub-rating">
+                <p class= "rating-title">Communication:</p>
+                <div class="progress progress-orange">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.communication * 20)%>%"><h1><%= rating.communication.round(2) %></h1></div>
+                </div>
+              </div>
+
+              <div class = "sub-rating">
+                <p class= "rating-title">Helpfulness:</p>
+                <div class="progress progress-orange">
+                  <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.helpfulness * 20)%>%"><h1><%= rating.helpfulness.round(2)%></h1></div>
+                </div>
+              </div>
+
+              <div class = "sub-rating">
+                <p class= "rating-title">Reliability:</p>
+                <div class="progress progress-orange">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style="width: <%=(rating.reliability * 20)%>%"><h1><%= rating.reliability.round(2) %></h1></div>
+                </div>
+            </div>
+          </div>
         </div>
+  </div>
+
       <%end%>
     <%end%>
-  </div>
-</div>
-  
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-
-    <div class="modal-content">
-   
-      <div class="modal-body">
-        <%= erb :"/addresses/new" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-form" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="ratingModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <%= erb :"/ratings/new" %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-form" data-dismiss="modal">Close</button>
-      </div>
-    </div>
   </div>
 </div>
 
