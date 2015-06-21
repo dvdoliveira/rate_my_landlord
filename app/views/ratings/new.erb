@@ -3,18 +3,18 @@
     <input style="display: none;" type="text" name="landlord_id" value="<%=params[:id]%>">
     <div class="form-group">
       <label style="color: black;">Communication:</label>
-      <input id="communication" name="communication" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+      <input id="communication" name="communication" type="number" class="rating" data-show-clear="false" min=0 max=5 step=1 data-size="xs" >
       <script type="javascript">$("#communication").rating();</script>
     </div>
     <div class="form-group">
-      <label style="color: black;">Reliability:</label>
-      <input id="reliability" name="reliability" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-      <script type="javascript">$("#reliability").rating();</script>
+      <label style="color: black;">Helpfulness:</label>
+      <input id="helpfulness" name="helpfulness" type="number" class="rating" data-show-clear="false" min=0 max=5 step=1 data-size="xs" >
+      <script type="javascript">$("#helpfulness").rating();</script>
     </div>
     <div class="form-group">
-      <label style="color: black;">Helpfulness:</label>
-      <input id="helpfulness" name="helpfulness" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-      <script type="javascript">$("#helpfulness").rating();</script>
+      <label style="color: black;">Reliability:</label>
+      <input id="reliability" name="reliability" type="number" class="rating" data-show-clear="false" min=0 max=5 step=1 data-size="xs" >
+      <script type="javascript">$("#reliability").rating();</script>
     </div>
 
     <label style="color: black;">Would you have a beer with your landlord?</label>
