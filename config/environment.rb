@@ -10,6 +10,8 @@ require 'sinatra/contrib/all' # Requires cookies, among other things
 
 require 'pry'
 
+require 'rack'
+
 require 'bcrypt'
 require 'will_paginate'
 require 'will_paginate/active_record'

@@ -11,6 +11,11 @@ helpers do
     @current_user
   end
 
+  # Method to escape HTML on form fields and avoid Cross Site Scripting
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
+
   # Error handling
   def display_error
     error = session[:error]
