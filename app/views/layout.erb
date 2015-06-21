@@ -41,17 +41,32 @@
           <% if current_user %>
           	<li>
           		<a href= "/landlords/new" title="" ><span class="glyphicon glyphicon-plus" aria-hidden:true rel=""></span></a>
-          		
           	</li>
             <li><a href="/logout">Logout</a></li>
           <% else %>
-            <li><a href="/session/new">Login</a></li>
+          	<li><a href="#" data-toggle="modal" data-target="#basicModal">Login</a></li>
             <li><a href="/users/new">Sign-up</a></li> 
           <% end %>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel">Login</h3>
+      </div>
+      <div class="modal-body">
+        <%= erb :"/session/new" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
   <%= yield %>
 </body>
 </html>
