@@ -17,6 +17,10 @@ body {
   text-shadow: 0 2px 3px rgba(0,0,0,.5);
 }
 
+.glyphicon-plus {
+  color: white;
+}
+
 .title h1 {
   font-size: 100px;
   text-align: center;
@@ -383,5 +387,51 @@ body {
   height: 100%;
   text-align: center;
   vertical-align: middle;
+}
+
+/*Pagination*/
+.apple_pagination {
+  font-size: 25px;
+  text-align: center;
+  padding: 1em;
+  cursor: default; }
+  .apple_pagination a, .apple_pagination span {
+    padding: 0.2em 0.3em; }
+  .apple_pagination .disabled {
+    color: #aaaaaa; }
+  .apple_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  .apple_pagination a {
+    text-decoration: none;
+    color: black; }
+    .apple_pagination a:hover, .apple_pagination a:focus {
+      text-decoration: underline; }
+
+/*Tooltip*/
+a[data-s]:hover:after {
+  content:attr(data-s);
+  padding:2px 6px;
+  font-family:arial, san-serif;
+  font-size:.8em;
+  color:#343434;
+  text-shadow:0 1px rgba(255,255,255,.7);
+  position:absolute;
+  left:0;
+  top:40px;
+  white-space:nowrap;
+  z-index:0;
+  border-radius:2px;
+  background:white;
+  box-shadow:-1px 5px 15px rgba(0,0,0,0.6);
 }
 

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true
   validate :compare_passwords
 
-
+  private
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
