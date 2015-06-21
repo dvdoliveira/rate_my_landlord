@@ -17,6 +17,10 @@ body {
   text-shadow: 0 2px 3px rgba(0,0,0,.5);
 }
 
+.glyphicon-plus {
+  color: white;
+}
+
 .title h1 {
   font-size: 100px;
   text-align: center;
@@ -385,6 +389,7 @@ body {
   vertical-align: middle;
 }
 
+/*Pagination*/
 .apple_pagination {
   font-size: 25px;
   text-align: center;
@@ -411,4 +416,22 @@ body {
     color: black; }
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }
+
+/*Tooltip*/
+a[data-s]:hover:after {
+  content:attr(data-s);
+  padding:2px 6px;
+  font-family:arial, san-serif;
+  font-size:.8em;
+  color:#343434;
+  text-shadow:0 1px rgba(255,255,255,.7);
+  position:absolute;
+  left:0;
+  top:40px;
+  white-space:nowrap;
+  z-index:0;
+  border-radius:2px;
+  background:white;
+  box-shadow:-1px 5px 15px rgba(0,0,0,0.6);
+}
 
