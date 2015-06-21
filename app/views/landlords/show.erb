@@ -82,7 +82,7 @@
         <%full_address = (address.street_number.to_s + " " + address.street_name.split.map(&:capitalize).join(' ') + ", " + address.city.capitalize)%>
       <%end%>
 
-      <button type="button" class="btn btn-info btn-lg btn-address" data-toggle="modal" data-target="#<%=address.id%>mapModal"><%=full_address%></button>
+      <button type="button" class="btn-info btn-lg btn-address" data-toggle="modal" data-target="#<%=address.id%>mapModal"><%=full_address%></button>
 
       <div id="<%=address.id%>mapModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
