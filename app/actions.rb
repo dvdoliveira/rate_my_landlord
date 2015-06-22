@@ -56,7 +56,7 @@ get '/landlords' do
   if params[:name] && !params[:name].empty?
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
-    query = "SELECT
+    query = "SELECT DISTINCT ON (id)
               id,
               user_id,
               full_name,
