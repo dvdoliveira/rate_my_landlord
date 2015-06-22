@@ -56,7 +56,7 @@ get '/landlords' do
   if params[:name] && !params[:name].empty?
     name_array = params[:name].split(" ")
     subselect = name_array.map { |name| "SELECT * FROM landlords WHERE full_name LIKE '%#{name}%'" }.join(' UNION ALL ')
-    query = "SELECT DISTINCT ON (id)
+    query = "SELECT
               id,
               user_id,
               full_name,
@@ -67,7 +67,7 @@ get '/landlords' do
               friendly,
               created_at,
               COUNT(*) as rank
-              FROM(#{subselect}) as landlords GROUP BY id ORDER BY rank DESC;"
+              FROM(#{subselect}) as landlords GROUP BY id, user_id ORDER BY rank DESC;"
     @search_results = Landlord.find_by_sql(query)
     @search_results.length == 1 ? (redirect "/landlords/#{@search_results.first.id}") : (erb :'landlords/index')
   else params[:street_number] && !params[:street_number].empty?
